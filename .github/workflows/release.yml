@@ -1,0 +1,39 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.13.4
+
+      - name: install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.17.0
+          cache: 'pnpm'
+
+      - name: install dependencies
+        run: pnpm install --no-save
+
+      - name: create Release PR or publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

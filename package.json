@@ -1,0 +1,55 @@
+{
+	"name": "exceptionally",
+	"version": "0.0.0",
+	"description": "A fully type-safe and lightweight way of using exceptions instead of throwing errors",
+	"scripts": {
+		"---- DEV -----------------------------------------------------------------------------": "",
+		"dev": "echo hi",
+		"---- BUILD ---------------------------------------------------------------------------": "",
+		"build": "tsc",
+		"release": "pnpm build && changeset publish",
+		"---- TEST ----------------------------------------------------------------------------": "",
+		"test": "tsc --noEmit",
+		"---- LINT ----------------------------------------------------------------------------": "",
+		"lint": "pnpm format && pnpm eslint",
+		"lint:fix": "pnpm format:fix && pnpm eslint:fix",
+		"eslint:base": "eslint --cache",
+		"eslint": "pnpm eslint:base .",
+		"eslint:fix:base": "pnpm eslint:base --fix",
+		"eslint:fix": "pnpm eslint:fix:base .",
+		"format": "dprint check",
+		"format:fix": "dprint fmt",
+		"---- OTHER ---------------------------------------------------------------------------": "",
+		"prepare": "husky install",
+		"---- SHORTCUTS -----------------------------------------------------------------------": "",
+		"changeset": "changeset",
+		"changeset:apply": "changeset version",
+		"lint-staged": "lint-staged"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@changesets/cli": "^2.25.0",
+		"@typescript-eslint/eslint-plugin": "^5.40.0",
+		"@typescript-eslint/parser": "^5.40.0",
+		"dprint": "^0.32.1",
+		"eslint": "^8.25.0",
+		"eslint-config-xo": "^0.42.0",
+		"eslint-config-xo-typescript": "^0.53.0",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
+		"typescript": "^4.8.4"
+	},
+	"type": "module",
+	"author": "ivanhofer",
+	"keywords": [],
+	"license": "MIT",
+	"homepage": "https://github.com/ivanhofer/exceptionally#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ivanhofer/exceptionally"
+	},
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/ivanhofer"
+	}
+}

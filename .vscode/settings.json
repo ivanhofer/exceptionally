@@ -1,0 +1,25 @@
+{
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	},
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "file",
+	"eslint.validate": [
+		"typescript",
+		"javascript"
+	],
+	"files.associations": {
+		"**/tsconfig*.json": "jsonc"
+	},
+	"explorer.fileNesting.patterns": {
+		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, pnpm-workspace.yaml, .npmrc",
+		"*.ts": "${capture}.test.ts, ${capture}.test.types.ts"
+	},
+	"explorer.fileNesting.enabled": true,
+	"editor.wordWrapColumn": 120,
+	"editor.wordWrap": "bounded",
+	"search.exclude": {
+		"**/out": true
+	},
+	"typescript.tsdk": "node_modules/typescript/lib"
+}
