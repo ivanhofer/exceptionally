@@ -4,9 +4,9 @@
 	"description": "A fully type-safe and lightweight way of using exceptions instead of throwing errors",
 	"scripts": {
 		"---- DEV -----------------------------------------------------------------------------": "",
-		"dev": "echo hi",
+		"dev": "tsup --watch",
 		"---- BUILD ---------------------------------------------------------------------------": "",
-		"build": "tsc",
+		"build": "tsup",
 		"release": "pnpm build && changeset publish",
 		"---- TEST ----------------------------------------------------------------------------": "",
 		"test": "tsc --noEmit",
@@ -26,7 +26,6 @@
 		"changeset:apply": "changeset version",
 		"lint-staged": "lint-staged"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@changesets/cli": "^2.25.0",
 		"@typescript-eslint/eslint-plugin": "^5.40.0",
@@ -37,11 +36,27 @@
 		"eslint-config-xo-typescript": "^0.53.0",
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
+		"tsup": "^6.2.3",
 		"typescript": "^4.8.4"
 	},
 	"type": "module",
+	"main": "./lib/index.cjs",
+	"module": "./lib/index.js",
+	"browser": "./lib/index.global.js",
+	"types": "./lib/index.d.ts",
+	"exports": {
+		".": "./lib"
+	},
+	"files": [
+		"/lib"
+	],
 	"author": "ivanhofer",
-	"keywords": [],
+	"keywords": [
+		"exceptions",
+		"errors",
+		"typesafe",
+		"lightweight"
+	],
 	"license": "MIT",
 	"homepage": "https://github.com/ivanhofer/exceptionally#readme",
 	"repository": {

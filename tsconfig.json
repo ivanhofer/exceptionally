@@ -13,7 +13,7 @@
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"preserveValueImports": true,
-		"outDir": "./out",
+		"outDir": "./lib",
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"noImplicitAny": true,
