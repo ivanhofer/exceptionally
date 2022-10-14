@@ -8,13 +8,10 @@ type GetDataFn<Data> = () => Data
 type Inverted<Success extends boolean> = Success extends true ? false : true
 
 export class Exceptionally<Success extends boolean> {
-	readonly isSuccess: Success
-	readonly isException: Inverted<Success>
-
-	constructor(readonly success: Success) {
-		this.isSuccess = success
-		this.isException = !success as Inverted<Success>
-	}
+	constructor(
+		readonly isSuccess: Success,
+		readonly isException: Inverted<Success> = !isSuccess as Inverted<Success>,
+	) {}
 
 	static [Symbol.hasInstance](object: unknown) {
 		return object && (object as Record<string, unknown>).exceptionally === exceptionally
