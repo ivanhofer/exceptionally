@@ -19,8 +19,12 @@ const dataToTest: (unknown | [unknown, string])[] = [
 
 	[Symbol('something'), 'Symbol'],
 
+	[() => true, 'function'],
+
 	[{}, 'empty object'],
 	[{ a: 'value', another: 'thing' }, 'object'],
+
+	[[1, 2, 3], 'array'],
 ]
 
 export const testDataMatrix = (fn: (data: unknown, name?: string) => void) =>
