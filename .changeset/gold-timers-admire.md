@@ -1,0 +1,5 @@
+---
+"exceptionally": patch
+---
+
+minor fix
