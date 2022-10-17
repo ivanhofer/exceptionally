@@ -1,13 +1,13 @@
 {
 	"name": "exceptionally",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A fully type-safe and lightweight way of using exceptions instead of throwing errors",
 	"scripts": {
 		"---- DEV -----------------------------------------------------------------------------": "",
 		"dev": "tsup --watch",
 		"---- BUILD ---------------------------------------------------------------------------": "",
 		"build": "tsup",
-		"release": "pnpm build && changeset publish",
+		"release": "pnpm build && npm publish",
 		"---- TEST ----------------------------------------------------------------------------": "",
 		"test": "pnpm tsc && pnpm vitest",
 		"vitest": "vitest run",
@@ -28,7 +28,6 @@
 		"prepare": "husky install",
 		"---- SHORTCUTS -----------------------------------------------------------------------": "",
 		"changeset": "changeset",
-		"changeset:apply": "changeset version",
 		"lint-staged": "lint-staged"
 	},
 	"devDependencies": {
