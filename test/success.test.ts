@@ -22,7 +22,7 @@ describe('success', () => {
 				const result = success(data)
 
 				expect(result()).toBe(data)
-			}),
+			})
 		)
 	})
 })

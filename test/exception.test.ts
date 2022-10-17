@@ -22,7 +22,7 @@ describe('exception', () => {
 				const result = exception(data)
 
 				expect(result()).toBe(data)
-			}),
+			})
 		)
 	})
 })

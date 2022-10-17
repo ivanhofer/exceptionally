@@ -25,7 +25,7 @@ describe('assertSuccess', () => {
 				// @ts-expect-error
 				// eslint-disable-next-line max-nested-callbacks
 				expect(() => assertSuccess(data)).toThrow()
-			}),
+			})
 		)
 	})
 })
