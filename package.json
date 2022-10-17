@@ -53,7 +53,11 @@
 	"browser": "./lib/index.global.js",
 	"types": "./lib/index.d.ts",
 	"exports": {
-		".": "./lib"
+		".": {
+			"types": "./lib/index.d.ts",
+			"require": "./lib/index.cjs",
+			"import": "./lib/index.js"
+		}
 	},
 	"files": [
 		"/lib"
