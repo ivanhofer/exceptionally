@@ -15,5 +15,5 @@ jobs:
       - name: check PR title
         uses: deepakputhraya/action-pr-title@master
         with:
-          regex: '^(chore|fix|feat)|(#\d+): '
+          regex: '^(chore|fix|feat|Version Packages)|(#\d+): '
           prefix_case_sensitive: true
