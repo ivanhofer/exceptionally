@@ -5,7 +5,7 @@
 			"ES2022"
 		],
 		"module": "ES2022",
-		"rootDir": "./src",
+		"rootDirs": ["./src", "./test"],
 		"moduleResolution": "Node16",
 		"resolveJsonModule": true,
 		"allowJs": true,
@@ -13,7 +13,7 @@
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"preserveValueImports": true,
-		"outDir": "./out",
+		"outDir": "./lib",
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"noImplicitAny": true,
@@ -27,10 +27,11 @@
 		"skipLibCheck": true
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"test/**/*.ts"
 	],
 	"exclude": [
 		"node_modules",
-		"out"
+		"lib"
 	]
 }

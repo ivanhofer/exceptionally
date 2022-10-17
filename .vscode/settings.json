@@ -19,7 +19,7 @@
 	"editor.wordWrapColumn": 120,
 	"editor.wordWrap": "bounded",
 	"search.exclude": {
-		"**/out": true
+		"**/lib": true
 	},
 	"typescript.tsdk": "node_modules/typescript/lib"
 }

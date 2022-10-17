@@ -35,6 +35,7 @@ const config = {
 		camelcase: 'off',
 		'no-redeclare': 'off',
 		'no-undef': 'off',
+		'comma-dangle': 'off',
 
 		// modify defaults
 		'no-multi-spaces': 'warn',
@@ -43,7 +44,6 @@ const config = {
 		'no-mixed-spaces-and-tabs': 'warn',
 		'object-shorthand': 'warn',
 		'space-in-parens': 'warn',
-		'comma-dangle': 'warn',
 		'key-spacing': 'warn',
 		'padded-blocks': 'warn',
 

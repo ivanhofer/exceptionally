@@ -1,15 +1,20 @@
 {
 	"name": "exceptionally",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "A fully type-safe and lightweight way of using exceptions instead of throwing errors",
 	"scripts": {
 		"---- DEV -----------------------------------------------------------------------------": "",
-		"dev": "echo hi",
+		"dev": "tsup --watch",
 		"---- BUILD ---------------------------------------------------------------------------": "",
-		"build": "tsc",
-		"release": "pnpm build && changeset publish",
+		"build": "tsup",
+		"release": "pnpm build && npm publish",
 		"---- TEST ----------------------------------------------------------------------------": "",
-		"test": "tsc --noEmit",
+		"test": "pnpm tsc && pnpm vitest",
+		"vitest": "vitest run",
+		"vitest:watch": "vitest watch",
+		"tsc": "tsc --noEmit",
+		"tsc:watch": "tsc --noEmit --watch",
+		"size": "size-limit",
 		"---- LINT ----------------------------------------------------------------------------": "",
 		"lint": "pnpm format && pnpm eslint",
 		"lint:fix": "pnpm format:fix && pnpm eslint:fix",
@@ -23,12 +28,11 @@
 		"prepare": "husky install",
 		"---- SHORTCUTS -----------------------------------------------------------------------": "",
 		"changeset": "changeset",
-		"changeset:apply": "changeset version",
 		"lint-staged": "lint-staged"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@changesets/cli": "^2.25.0",
+		"@size-limit/preset-small-lib": "^8.1.0",
 		"@typescript-eslint/eslint-plugin": "^5.40.0",
 		"@typescript-eslint/parser": "^5.40.0",
 		"dprint": "^0.32.1",
@@ -37,11 +41,30 @@
 		"eslint-config-xo-typescript": "^0.53.0",
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
-		"typescript": "^4.8.4"
+		"size-limit": "^8.1.0",
+		"tsup": "^6.2.3",
+		"typescript": "^4.8.4",
+		"vite": "^3.1.8",
+		"vitest": "^0.24.1"
 	},
 	"type": "module",
+	"main": "./lib/index.cjs",
+	"module": "./lib/index.js",
+	"browser": "./lib/index.global.js",
+	"types": "./lib/index.d.ts",
+	"exports": {
+		".": "./lib"
+	},
+	"files": [
+		"/lib"
+	],
 	"author": "ivanhofer",
-	"keywords": [],
+	"keywords": [
+		"exceptions",
+		"errors",
+		"typesafe",
+		"lightweight"
+	],
 	"license": "MIT",
 	"homepage": "https://github.com/ivanhofer/exceptionally#readme",
 	"repository": {
