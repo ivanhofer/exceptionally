@@ -6,7 +6,7 @@ export default defineConfig(({ watch }) => ({
 	format: ['esm', 'cjs', 'iife'],
 	dts: true,
 	treeshake: true,
-	sourcemap: true,
+	sourcemap: !!watch,
 	clean: true,
 	minify: !watch,
 }))
