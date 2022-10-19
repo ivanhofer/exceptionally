@@ -24,11 +24,15 @@
 		"noImplicitOverride": true,
 		"allowUnreachableCode": false,
 		"skipDefaultLibCheck": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"paths": {
+			"exceptionally": ["./src/index.ts"]
+		}
 	},
 	"include": [
 		"src/**/*.ts",
-		"test/**/*.ts"
+		"test/**/*.ts",
+		"examples/**/*.ts"
 	],
 	"exclude": [
 		"node_modules",
