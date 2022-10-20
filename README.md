@@ -49,10 +49,123 @@ No, there is a little bit more to it.
 
 ## Usage
 
-> TODO
+You can find some detailed examples [here](https://github.com/ivanhofer/exceptionally/tree/main/examples).
 
-```ts
-```
+### exposed functions
+
+- **`success`**:
+  ```ts
+  const success: <Data>(data: Data) => Success<Data>
+  ```
+
+  ```ts
+  import { success } from 'exceptionally'
+
+  const saySomething = () => {
+  	return success('hello world')
+  }
+
+  const result = saySomething()
+
+  result.isSuccess // => `true`
+  result.isException // => `false`
+  result() // => `'hello world'`
+  ```
+
+- **`exception`**:
+  ```ts
+  const exception: <Data>(data: Data) => Exception<Data>
+  ```
+
+  ```ts
+  import { exception } from 'exceptionally'
+
+  const saySomething = () => {
+  	return exception("Don't tell me what to do!")
+  }
+
+  const result = saySomething()
+
+  result.isSuccess // => `false`
+  result.isException // => `true`
+  result() // => `"Don't tell me what to do!"`
+  ```
+
+- **`assertSuccess`**:
+  ```ts
+  const assertSuccess: <Result extends Success<unknown>>(result: Result) => asserts result is Result
+  ```
+
+  ```ts
+  import { assertSuccess, exception } from 'exceptionally'
+
+  const doSomething = () => {
+  	const result = Math.random() > 0.5 ? success(1) : exception(0)
+
+  	if (result.isException) throw new Error(result())
+
+  	assertSuccess(result)
+
+  	return success()
+  }
+  ```
+
+- **`assertException`**:
+  ```ts
+  const assertException: <Result extends Exception<unknown>>(result: Result) => asserts result is Result
+  ```
+
+  ```ts
+  import { assertException, exception } from 'exceptionally'
+
+  const doSomething = () => {
+  	const result = Math.random() > 0.5 ? success(1) : exception(0)
+
+  	if (result.isSuccess) return result()
+
+  	assertException(result)
+  	throw new Error(result())
+  }
+  ```
+
+- **`Exceptionally`**:
+  ```ts
+  type Inverted<Success extends boolean> = Success extends true ? false : true
+
+  class Exceptionally<Success extends boolean> {
+  	readonly isSuccess: Success
+  	readonly isException: Inverted<Success>
+  }
+  ```
+
+  ```ts
+  import { success, Exceptionally } from 'exceptionally'
+
+  const result = Math.random() > 0.5 ? success(1) : 0
+
+  if (result instanceOf Exceptionally) {
+  	const data = result()
+  	console.info(data) // => `1`
+  } else {
+  	console.info(result) // => `0`
+  }
+  ```
+
+### exposed types
+
+- **`ExceptionallyResult`**:
+  ```ts
+  type ExceptionallyResult<Success extends boolean, Data> = () => Data & Exceptionally<Success>
+  ```
+- **`Success`**
+  ```ts
+  type Success<Data> = ExceptionallyResult<true, Data>
+  ```
+
+- **`Exception`**
+  ```ts
+  type Exception<Data> = ExceptionallyResult<false, Data>
+  ```
 
 <!-- ---------------------------------------------------------------------------------------------------- -->
 
