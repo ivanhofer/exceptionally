@@ -12,6 +12,9 @@ class NetworkException extends Error {
 class DecodeJsonException extends Error {
 	readonly #id = Symbol.for('DecodeJsonException')
 }
+class HttpException extends Error {
+	readonly #id = Symbol.for('HttpException')
+}
 class EmptyDatasetException extends Error {
 	readonly #id = Symbol.for('EmptyDatasetException')
 }
@@ -19,19 +22,22 @@ class EmptyDatasetException extends Error {
 // when fetching data, a few things can happen.. when something fails, it is good to know what has triggered the issue
 const fetchData = async <ReturnType>(endpoint: string) => {
 	const fetchResult = await fetch(endpoint)
-		.catch(e => exception(new NetworkException(e))) // the server could be unavailable
+		.catch(e => exception(new NetworkException(e))) // the server could be unavailable ...
 	if (fetchResult instanceof Exceptionally) return fetchResult // pass forward exception
+
+	// ... the request could fail with a statuscode 4xx or 5xx ...
+	if (!fetchResult.ok) return exception(new HttpException(`${fetchResult.status}: ${fetchResult.statusText}`))
 
 	const dataResult = await fetchResult.json()
 		.then(data => data as ReturnType)
-		.catch(e => exception(new DecodeJsonException(e))) // or the payload could consist of invalid JSON
+		.catch(e => exception(new DecodeJsonException(e))) // ... or the payload could consist of invalid JSON ...
 	if (dataResult instanceof Exceptionally) return dataResult // pass forward exception
 
 	if (Array.isArray(dataResult) && !dataResult.length) {
-		return exception(new EmptyDatasetException()) // or maybe the validation of the data could fail
+		return exception(new EmptyDatasetException()) // ... or maybe the validation of the data could fail ..
 	}
 
-	return success(dataResult) // and finally fetching data could also be successful
+	return success(dataResult) // ... and finally fetching data could also be successful
 }
 
 // --------------------------------------------------------------------------------------------------------------------
