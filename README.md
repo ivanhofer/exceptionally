@@ -43,9 +43,25 @@ Adding a new kind of exception deep down in the nested functions would require y
 
 No, there is a little bit more to it.
 
-> TODO
+First of all, we need to make sure that in each part of the code we kow what the outcome of a specific function call will be, without looking at the implementation. To do that, we always need to return data as well as exceptions. If we return everything, TypeScript can infer all types and we know what we get when calling a function.
+
+But now we also need a way to distinguish between a successful result and a result that contains an exception, so we need to wrap the value we return into an object. A by-product of this is that we need to unwrap the actual value at a later point, where we want to access it. This should be made as easiest as possible.
+
+Because we don't throw exceptions, we don't use `try-catch` blocks. We need to use `if` statements to check whether or result contains a successful response or an exception.
+
+Little helper functions, that are fully typed will greatly improve the Developer Experience.
+
+And of course we want our code to be explicit enough, This means we need to come up with a meaningful name for our wrapping functions.
+
+This packages delivers a solution to all the problems described above.
 
 <!-- ---------------------------------------------------------------------------------------------------- -->
+
+## Installation
+
+```bash
+npm install exceptionally
+```
 
 ## Usage
 
