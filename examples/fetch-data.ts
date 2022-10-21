@@ -7,16 +7,16 @@ import { fetch } from 'undici'
 
 // define different Exception classes for all kind of exceptions
 class NetworkException extends Error {
-	readonly #id = Symbol.for('NetworkException')
+	readonly #id = Symbol('NetworkException')
 }
 class DecodeJsonException extends Error {
-	readonly #id = Symbol.for('DecodeJsonException')
+	readonly #id = Symbol('DecodeJsonException')
 }
 class HttpException extends Error {
-	readonly #id = Symbol.for('HttpException')
+	readonly #id = Symbol('HttpException')
 }
 class EmptyDatasetException extends Error {
-	readonly #id = Symbol.for('EmptyDatasetException')
+	readonly #id = Symbol('EmptyDatasetException')
 }
 
 // when fetching data, a few things can happen.. when something fails, it is good to know what has triggered the issue
