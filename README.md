@@ -8,6 +8,7 @@
 :ok_hand: easy to use syntax\
 :handshake: works everywhere (browser, node, cjs, esm)\
 :warning: can warn you about unhandled exceptions
+:no_entry: no external dependencies
 
 <!-- list of supported emojis on GitHub: https://github.com/ikatyang/emoji-cheat-sheet -->
 
@@ -49,9 +50,9 @@ But now we also need a way to distinguish between a successful result and a resu
 
 Because we don't throw exceptions, we don't use `try-catch` blocks. We need to use `if` statements to check whether or result contains a successful response or an exception.
 
-Little helper functions, that are fully typed will greatly improve the Developer Experience.
+Little helper functions, that are fully typed will greatly improve the Developer Experience. Of course we want our code to be explicit enough, so the code can be read and understood fast. This means we need to come up with meaningful names for our wrapping functions.
 
-And of course we want our code to be explicit enough, This means we need to come up with a meaningful name for our wrapping functions.
+And because this is no rocket science, we don't need hundreds of dependencies to make this all happen. The could should be kept clean and efficient.
 
 This packages delivers a solution to all the problems described above.
 
