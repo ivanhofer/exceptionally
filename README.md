@@ -3,11 +3,11 @@
 **A fully type-safe and lightweight way of using exceptions instead of throwing errors**
 
 :safety_vest: fully typesafe\
-:feather: lightweight (205 bytes)\
+:baby_chick: lightweight (205 bytes)\
 :running: almost no runtime overhead\
 :ok_hand: easy to use syntax\
 :handshake: works everywhere (browser, node, cjs, esm)\
-:warning: can warn you about unhandled exceptions
+:warning: can warn you about unhandled exceptions\
 :no_entry: no external dependencies
 
 <!-- list of supported emojis on GitHub: https://github.com/ikatyang/emoji-cheat-sheet -->
