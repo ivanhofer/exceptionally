@@ -27,11 +27,13 @@ const wrap = <Success extends boolean, Data>(success: Success, data: Data): Exce
 
 export type Success<Data> = ExceptionallyResult<true, Data>
 
-export const success = <Data>(data: Data): Success<Data> => wrap(true, data)
+export const success = <Data = undefined>(...data: undefined extends Data ? [] | [Data] : [Data]): Success<Data> =>
+	wrap(true, ...data as [Data])
 
 export type Exception<Data> = ExceptionallyResult<false, Data>
 
-export const exception = <Data>(data: Data): Exception<Data> => wrap(false, data)
+export const exception = <Data = undefined>(...data: undefined extends Data ? [] | [Data] : [Data]): Exception<Data> =>
+	wrap(false, ...data as [Data])
 
 // --------------------------------------------------------------------------------------------------------------------
 

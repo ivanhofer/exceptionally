@@ -17,6 +17,12 @@ describe('exception', () => {
 	})
 
 	describe('should return the passed value', () => {
+		test('no data passed', () => {
+			const result = exception()
+
+			expect(result()).toBe(undefined)
+		})
+
 		testDataMatrix((data: unknown, name?: string) =>
 			test(`${name || data}`, () => {
 				const result = exception(data)
