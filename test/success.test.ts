@@ -17,6 +17,12 @@ describe('success', () => {
 	})
 
 	describe('should return the passed value', () => {
+		test('no data passed', () => {
+			const result = success()
+
+			expect(result()).toBe(undefined)
+		})
+
 		testDataMatrix((data: unknown, name?: string) =>
 			test(`${name || data}`, () => {
 				const result = success(data)

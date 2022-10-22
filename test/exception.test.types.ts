@@ -9,7 +9,26 @@ import { exception } from './index.js'
 	const eIsSuccess: true = e.isSuccess
 }
 
+{
+	const e = exception()
+	const eIsException: true = e.isException
+	// @ts-expect-error should be `false`
+	const eIsSuccess: true = e.isSuccess
+
+	const eType: undefined = e()
+}
+
 // --------------------------------------------------------------------------------------------------------------------
+
+{
+	// @ts-expect-error need to pass data if type is specified
+	const e = exception<string>()
+}
+
+{
+	// @ts-expect-error cannot pass `undefined` if type is specified
+	const e = exception<string>(undefined)
+}
 
 {
 	const e = exception(undefined)
@@ -86,4 +105,12 @@ import { exception } from './index.js'
 	const eType: string[] = e()
 	// @ts-expect-error should be `string[]`
 	const eWrongType: string = e()
+}
+
+{
+	const value = Math.random() < 0.5 ? 123 : new Date()
+	const e = exception(value)
+	const eType: number | Date = e()
+	// @ts-expect-error should be `number | Date`
+	const eWrongType: null = e()
 }
