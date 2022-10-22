@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.0.0
+
+### Major Changes
+
+- 83aa448: write documentation and add examples
+
 ## 0.2.0
 
 ### Minor Changes
