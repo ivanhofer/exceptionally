@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.1.0
+
+### Minor Changes
+
+- b31c51a: allow not to pass data
+
 ## 1.0.0
 
 ### Major Changes
