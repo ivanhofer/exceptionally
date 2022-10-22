@@ -1,4 +1,4 @@
-# :shield:	exceptionally
+# :shield: exceptionally
 
 **A fully type-safe and lightweight way of using exceptions instead of throwing errors**
 
@@ -79,7 +79,7 @@ You can find some detailed examples [here](https://github.com/ivanhofer/exceptio
   import { success } from 'exceptionally'
 
   const saySomething = () => {
-  	return success('hello world')
+     return success('hello world')
   }
 
   const result = saySomething()
@@ -98,7 +98,7 @@ You can find some detailed examples [here](https://github.com/ivanhofer/exceptio
   import { exception } from 'exceptionally'
 
   const saySomething = () => {
-  	return exception("Don't tell me what to do!")
+     return exception("Don't tell me what to do!")
   }
 
   const result = saySomething()
@@ -117,13 +117,13 @@ You can find some detailed examples [here](https://github.com/ivanhofer/exceptio
   import { assertSuccess, exception } from 'exceptionally'
 
   const doSomething = () => {
-  	const result = Math.random() > 0.5 ? success(1) : exception(0)
+     const result = Math.random() > 0.5 ? success(1) : exception(0)
 
-  	if (result.isException) throw new Error(result())
+     if (result.isException) throw new Error(result())
 
-  	assertSuccess(result)
+     assertSuccess(result)
 
-  	return success()
+     return success()
   }
   ```
 
@@ -136,12 +136,12 @@ You can find some detailed examples [here](https://github.com/ivanhofer/exceptio
   import { assertException, exception } from 'exceptionally'
 
   const doSomething = () => {
-  	const result = Math.random() > 0.5 ? success(1) : exception(0)
+     const result = Math.random() > 0.5 ? success(1) : exception(0)
 
-  	if (result.isSuccess) return result()
+     if (result.isSuccess) return result()
 
-  	assertException(result)
-  	throw new Error(result())
+     assertException(result)
+     throw new Error(result())
   }
   ```
 
@@ -150,8 +150,8 @@ You can find some detailed examples [here](https://github.com/ivanhofer/exceptio
   type Inverted<Success extends boolean> = Success extends true ? false : true
 
   class Exceptionally<Success extends boolean> {
-  	readonly isSuccess: Success
-  	readonly isException: Inverted<Success>
+     readonly isSuccess: Success
+     readonly isException: Inverted<Success>
   }
   ```
 
@@ -161,10 +161,10 @@ You can find some detailed examples [here](https://github.com/ivanhofer/exceptio
   const result = Math.random() > 0.5 ? success(1) : 0
 
   if (result instanceOf Exceptionally) {
-  	const data = result()
-  	console.info(data) // => `1`
+     const data = result()
+     console.info(data) // => `1`
   } else {
-  	console.info(result) // => `0`
+     console.info(result) // => `0`
   }
   ```
 
