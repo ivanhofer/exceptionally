@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.2.0
+
+### Minor Changes
+
+- 3d335ba: add utilities to extract types
+
 ## 1.1.0
 
 ### Minor Changes
