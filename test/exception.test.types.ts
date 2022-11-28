@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { exception } from './index.js'
+import { exception, success } from './index.js'
 
 {
 	const e = exception('data')
@@ -16,6 +16,26 @@ import { exception } from './index.js'
 	const eIsSuccess: true = e.isSuccess
 
 	const eType: undefined = e()
+}
+
+// --------------------------------------------------------------------------------------------------------------------
+
+{
+	const s = exception(success(true as const))
+	const sIsSuccess: true = s.isSuccess
+	// @ts-expect-error should be `false`
+	const sIsException: true = s.isException
+
+	const sType: true = s()
+}
+
+{
+	const s = exception(exception(5 as const))
+	const sIsSuccess: false = s.isSuccess
+	// @ts-expect-error should be `false`
+	const sIsException: false = s.isException
+
+	const sType: 5 = s()
 }
 
 // --------------------------------------------------------------------------------------------------------------------
