@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.3.0
+
+### Minor Changes
+
+- e9185b4: allow instances of `Exceptionally` to be wrapped without loosing it's type
+
 ## 1.2.0
 
 ### Minor Changes
