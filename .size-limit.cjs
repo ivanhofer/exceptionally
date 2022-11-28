@@ -3,15 +3,15 @@
 const config = [
 	{
 		path: 'lib/index.js',
-		limit: '209 b',
+		limit: '220 b',
 	},
 	{
 		path: 'lib/index.cjs',
-		limit: '309 b',
+		limit: '319 b',
 	},
 	{
 		path: 'lib/index.global.js',
-		limit: '287 b',
+		limit: '297 b',
 	},
 ]
 

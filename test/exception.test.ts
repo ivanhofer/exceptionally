@@ -1,4 +1,4 @@
-import { exception } from '../src/index.js'
+import { exception, success } from '../src/index.js'
 
 import { describe, expect, test } from 'vitest'
 import { testDataMatrix } from './test.utils.js'
@@ -21,6 +21,20 @@ describe('exception', () => {
 			const result = exception()
 
 			expect(result()).toBe(undefined)
+		})
+
+		test('nested success', () => {
+			const result = exception(success('value'))
+
+			expect(result.isException).toBe(false)
+			expect(result()).toBe('value')
+		})
+
+		test('nested exception', () => {
+			const result = exception(exception(false))
+
+			expect(result.isException).toBe(true)
+			expect(result()).toBe(false)
 		})
 
 		testDataMatrix((data: unknown, name?: string) =>
