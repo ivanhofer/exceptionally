@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.3.1
+
+### Patch Changes
+
+- b987413: update Types to reflect nested Success and Exception types
+
 ## 1.3.0
 
 ### Minor Changes
