@@ -11,7 +11,7 @@ const config = [
 	},
 	{
 		path: 'lib/index.global.js',
-		limit: '297 b',
+		limit: '298 b',
 	},
 ]
 
