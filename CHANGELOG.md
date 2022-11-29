@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.3.2
+
+### Patch Changes
+
+- ddcef81: make Types resolve to a more readable name
+
 ## 1.3.1
 
 ### Patch Changes
