@@ -1,6 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { exception, success } from './index.js'
+import { type Exception, exception, type Success, success } from './index.js'
+
+type CheckIfException<T extends Exception<string>> = T
+
+type C1 = CheckIfException<Exception<'value'>>
+type C2 = CheckIfException<Success<Exception<'random string'>>>
+type C3 = CheckIfException<Success<Success<Exception<'random string'>>>>
+
+// @ts-expect-error is not a Exception Type
+type E1 = CheckIfException<Success<'value'>>
+// @ts-expect-error is not a Exception Type
+type E2 = CheckIfException<Exception<Success<'value'>>>
 
 {
 	const e = exception('data')
