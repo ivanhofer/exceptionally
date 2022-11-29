@@ -20,7 +20,14 @@ export class Exceptionally<Success extends boolean> {
 
 type GetDataFn<Data> = () => Data
 
-export type ExceptionallyResult<Success extends boolean, Data> = GetDataFn<Data> & Exceptionally<Success>
+export type ExceptionallyResult<Success extends boolean, Data> = Success extends true ? SuccessOf<Data>
+	: ExceptionOf<Data>
+
+type SuccessOf<Data> = GetDataFn<Data> & Exceptionally<true>
+export type ExceptionOf<Data> = GetDataFn<Data> & Exceptionally<false>
+
+type Wrap<Success extends boolean, Data> = Data extends ExceptionallyResult<boolean, unknown> ? Data
+	: ExceptionallyResult<Success, Data>
 
 const wrap = <Success extends boolean, Data>(
 	success: Success,
@@ -33,7 +40,7 @@ const wrap = <Success extends boolean, Data>(
 
 // ----------------
 
-export type Success<Data> = Data extends ExceptionallyResult<false, unknown> ? Data : ExceptionallyResult<true, Data>
+export type Success<Data> = Wrap<true, Data>
 
 export const success = <Data = undefined>(
 	...data: undefined extends Data ? [] | [Data] : [Data]
@@ -43,7 +50,7 @@ export const success = <Data = undefined>(
 
 // ----------------
 
-export type Exception<Data> = Data extends ExceptionallyResult<true, unknown> ? Data : ExceptionallyResult<false, Data>
+export type Exception<Data> = Wrap<false, Data>
 
 export const exception = <Data = undefined>(
 	...data: undefined extends Data ? [] | [Data] : [Data]
@@ -56,10 +63,10 @@ export const exception = <Data = undefined>(
 export type ExtractDataType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<boolean, infer Data> ? Data : never
 
-export type ExtractSuccessType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+export type ExtractSuccessType<Result extends Exceptionally<boolean>> = Result extends
 	ExceptionallyResult<true, infer Data> ? Success<Data> : never
 
-export type ExtractExceptionType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+export type ExtractExceptionType<Result extends Exceptionally<boolean>> = Result extends
 	ExceptionallyResult<false, infer Data> ? Exception<Data> : never
 
 // --------------------------------------------------------------------------------------------------------------------
