@@ -5,14 +5,9 @@ const exceptionally = Symbol()
 
 type Inverted<Success extends boolean> = Success extends true ? false : true
 
-export class Exceptionally<Success extends boolean> {
-	constructor(
-		readonly isSuccess: Success,
-		readonly isException: Inverted<Success> = !isSuccess as Inverted<Success>,
-	) {}
-
+export class Exceptionally {
 	static [Symbol.hasInstance](object: unknown) {
-		return object && (object as Record<string, unknown>).exceptionally === exceptionally
+		return (object as Record<string, unknown> | undefined)?.exceptionally === exceptionally
 	}
 }
 
@@ -23,8 +18,8 @@ type GetDataFn<Data> = () => Data
 export type ExceptionallyResult<Success extends boolean, Data> = Success extends true ? SuccessOf<Data>
 	: ExceptionOf<Data>
 
-type SuccessOf<Data> = GetDataFn<Data> & Exceptionally<true>
-export type ExceptionOf<Data> = GetDataFn<Data> & Exceptionally<false>
+type SuccessOf<Data> = GetDataFn<Data> & Exceptionally & { isSuccess: true; isException: false }
+type ExceptionOf<Data> = GetDataFn<Data> & Exceptionally & { isSuccess: false; isException: true }
 
 type Wrap<Success extends boolean, Data> = Data extends ExceptionallyResult<boolean, unknown> ? Data
 	: ExceptionallyResult<Success, Data>
@@ -33,10 +28,16 @@ const wrap = <Success extends boolean, Data>(
 	success: Success,
 	data: Data,
 ): Data extends ExceptionallyResult<boolean, unknown> ? Data : ExceptionallyResult<Success, Data> =>
-	data instanceof Exceptionally
+	(data instanceof Exceptionally
 		? data
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		: Object.assign(() => data, { exceptionally }, new Exceptionally(success)) as any
+		: Object.assign(
+			() => data,
+			{
+				exceptionally,
+				isSuccess: success as Success,
+				isException: !success as Inverted<Success>,
+			},
+		)) as Data extends ExceptionallyResult<boolean, unknown> ? Data : ExceptionallyResult<Success, Data>
 
 // ----------------
 
@@ -63,10 +64,10 @@ export const exception = <Data = undefined>(
 export type ExtractDataType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<boolean, infer Data> ? Data : never
 
-export type ExtractSuccessType<Result extends Exceptionally<boolean>> = Result extends
+export type ExtractSuccessType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<true, infer Data> ? Success<Data> : never
 
-export type ExtractExceptionType<Result extends Exceptionally<boolean>> = Result extends
+export type ExtractExceptionType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<false, infer Data> ? Exception<Data> : never
 
 // --------------------------------------------------------------------------------------------------------------------

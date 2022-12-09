@@ -3,7 +3,7 @@
 **A fully type-safe and lightweight way of using exceptions instead of throwing errors**
 
 :safety_vest: fully typesafe\
-:baby_chick: lightweight (220 bytes)\
+:baby_chick: lightweight (197 bytes)\
 :running: almost no runtime overhead\
 :ok_hand: easy to use syntax\
 :handshake: works everywhere (browser, node, cjs, esm)\
