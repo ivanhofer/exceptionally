@@ -1,5 +1,11 @@
 # exceptionally
 
+## 1.4.0
+
+### Minor Changes
+
+- 11b9e69: improve bundle size
+
 ## 1.3.2
 
 ### Patch Changes
