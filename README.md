@@ -66,6 +66,35 @@ npm install exceptionally
 
 > You should also set evetrything to [`strict` mode](https://www.typescriptlang.org/tsconfig#strict) in your `tsconfig.json` to get the most out of this package.
 
+## Basics
+
+```ts
+import { success, exception } from 'exceptioanlly'
+
+const doSomething = () => {
+  const value = Math.random()
+  // whenever you usually throw, return an `exception` instead
+  // you can pass additional payload if you want
+  if (value < 0.1) return exception('please try again')
+  
+  // if a function can return an `exception`, you should wrap the returned element with `success`
+  return success(value)
+}
+
+const result = doSomething()
+// instead of having to use `try-catch`, you simply check if the result is an exception
+if (result.isException) {
+  // you can unwrap the exception, and the result will be typed as `string`
+  concole.error(result().toUppercase()) => 'PLEASE TRY AGAIN'
+  return
+}
+
+// because we have handled the exception above, we are left with the `success` object
+// unwrap it and it will be typed as a `number`
+console.info(result().toPrecision(2)) // => e.g. '0.57'
+```
+
+
 ## Examples
 
 - [input validation](https://www.typescriptlang.org/play?noUncheckedIndexedAccess=true&noUnusedLocals=true&noUnusedParameters=true&target=99&jsx=0&useUnknownInCatchVariables=true&noImplicitOverride=true&noFallthroughCasesInSwitch=true&exactOptionalPropertyTypes=true&pretty=true#code/JYWwDg9gTgLgBAbzgUwB4GNlhsCA7AGjgGcBXdTY4uAXzgDMoIQ4ByNTbXPAQwBs+AT1YAoEQHpxcALSy58hYqXKVqteo2a1Y9PmLwAbv2AATHjGRwAvHAA8AEXM8AfAAozMHgC44jz0SM+U3NoH3cnHz8eAEprZzgYKFJLAB8SROA8AHNYq3iEEQBIXTx9OGBiAHkAa2s4QOCYaHDPaKLgejhXCprrKxtE5NioZBhSKDwSckpiFpixQpGxiZQMLBx8bqrqtpoxSRktI+OT07PVMRhBMEsABQgymwLCnlIYAAtQ9KhMrKKcGB8ZA+fQ-bJFEoWPAwEEZcF7EQlMqQfQANWMHmgdVcKJhcHu+ly+SKByW40mIGQPDwv3opD4KCgTCgcEpVB4WWQ1AA7u9kJNiMxRu9fuVqJkGiZ2p1XABCXEAOleH2gw1G5LYACJlZ8oJrWRViL9RNKuvKHjAFQCgWrlpNWJrrch9SBDcbTTiLVbgIDkAqgdkPnB4gBGABMAAZbRqHU6XaQygAjSzEXUWFkfalwcMRuDod48KA8dDp4gmwodM2KyH8mDRlYOmvQl1u7KiCsyxVO-38rJB2xwACsEajcDJDc1TZg8bKkJ4mTg5jgQJ4ZWHufzheLpfLpPVKwABoNkAe4Lz+fUMeZuHAwKviFyiuPJseRAikfBiDwDMgCfAbKugh4OgXS4j4f5EogEJ6IYV4bHgABKXL0v+l5BB4yCevoRC4ui6EhFAbQdl0krXvgSFkHwloVAAomsXD4PWkykfBFEoXABx3lQDDQNyhYmKsnDwQsBxfgYoofJYHg8GefLMXBN4FtQXEPlKxQweUAk2CGHFSDwfE+iQ36-haAAqEBRImq6YbibRPvuArTFysymLs+xSOcnled5PnSGIaCQLAeYaUkkwAcQQEga4kHPB+Rk-n+bFUXU+nzp+xl-q4zwvG8uo+KwABSEDvJM9gQMgrAEEUhROvlNFMliBZ4CYQTZCQnz0gJyYoKuwDIFAlXVVO+UADLQMgLDAGAZAsCYEB8NARBGvAPCUvASLICW+6LiYU0VMA6CisgQSWnAACCa1EAAjqQwAKoNhQ0HZxGuGJJn6El1HEHRQncLEHxMNycB4MgQP1cyr0ZRan3Rc9SLzX6mT0BArgHiDQO4vFyAmD4AAkCBvYlyFUdFNAHm5IihdFIhAA)
