@@ -1,5 +1,25 @@
 # exceptionally
 
+## 2.0.0
+
+### Major Changes
+
+- 9393163: rename `Extract*` types
+
+  take a look at the exported types in the README
+
+- 9393163: get rid of Exceptionally as a class since it can't cover all use cases in a typesafe way
+
+  use `isExceptionallyResult` instead
+
+- 9393163: export assertions under `/assert` subfolder
+
+  import `assertSuccess` and `assertException` from `'exceptionally/assert'`
+
+### Minor Changes
+
+- 9393163: allow to use multiple versions and instances of `exceptionally` in a project
+
 ## 1.4.0
 
 ### Minor Changes
