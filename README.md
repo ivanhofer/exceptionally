@@ -21,7 +21,7 @@
 - [Best Practices](#best-practices)
 - [Glossary](#glossary)
 
-<!-- ---------------------------------------------------------------------------------------------------- -->
+<!---------------------------------------------------------------------------------------------------------->
 
 ## Problem Description
 
@@ -37,7 +37,7 @@ While it requires just a little of effort to look into a function to see what ki
 
 Adding a new kind of exception deep down in the nested functions would require you to take a look at all the code parts that use the function and check whether they should handle the exception or pass it to the next level.
 
-<!-- ---------------------------------------------------------------------------------------------------- -->
+<!---------------------------------------------------------------------------------------------------------->
 
 ## Solution
 
@@ -57,7 +57,7 @@ And because this is no rocket science, we don't need hundreds of dependencies to
 
 This packages delivers a solution to all the problems described above.
 
-<!-- ---------------------------------------------------------------------------------------------------- -->
+<!---------------------------------------------------------------------------------------------------------->
 
 ## Installation
 
@@ -95,10 +95,14 @@ if (result.isException) {
 console.info(result().toPrecision(2)) // => e.g. '0.57'
 ```
 
+<!---------------------------------------------------------------------------------------------------------->
+
 ## Examples
 
 - [input validation](https://www.typescriptlang.org/play?noUncheckedIndexedAccess=true&noUnusedLocals=true&noUnusedParameters=true&target=99&jsx=0&useUnknownInCatchVariables=true&noImplicitOverride=true&noFallthroughCasesInSwitch=true&exactOptionalPropertyTypes=true&pretty=true#code/JYWwDg9gTgLgBAbzgUwB4GNlhsCA7AGjgGcBXdTY4uAXzgDMoIQ4ByNTbXPAQwBs+AT1YAoEQHpxcALSy58hYqXKVqteo2a1Y9PmLwAbv2AATHjGRwAvHAA8AEXM8AfAAozMHgC44jz0SM+U3NoH3cnHz8eAEprZzgYKFJLAB8SROA8AHNYq3iEEQBIXTx9OGBiAHkAa2s4QOCYaHDPaKLgejhXCprrKxtE5NioZBhSKDwSckpiFpixQpGxiZQMLBx8bqrqtpoxSRktI+OT07PVMRhBMEsABQgymwLCnlIYAAtQ9KhMrKKcGB8ZA+fQ-bJFEoWPAwEEZcF7EQlMqQfQANWMHmgdVcKJhcHu+ly+SKByW40mIGQPDwv3opD4KCgTCgcEpVB4WWQ1AA7u9kJNiMxRu9fuVqJkGiZ2p1XABCXEAOleH2gw1G5LYACJlZ8oJrWRViL9RNKuvKHjAFQCgWrlpNWJrrch9SBDcbTTiLVbgIDkAqgdkPnB4gBGABMAAZbRqHU6XaQygAjSzEXUWFkfalwcMRuDod48KA8dDp4gmwodM2KyH8mDRlYOmvQl1u7KiCsyxVO-38rJB2xwACsEajcDJDc1TZg8bKkJ4mTg5jgQJ4ZWHufzheLpfLpPVKwABoNkAe4Lz+fUMeZuHAwKviFyiuPJseRAikfBiDwDMgCfAbKugh4OgXS4j4f5EogEJ6IYV4bHgABKXL0v+l5BB4yCevoRC4ui6EhFAbQdl0krXvgSFkHwloVAAomsXD4PWkykfBFEoXABx3lQDDQNyhYmKsnDwQsBxfgYoofJYHg8GefLMXBN4FtQXEPlKxQweUAk2CGHFSDwfE+iQ36-haAAqEBRImq6YbibRPvuArTFysymLs+xSOcnled5PnSGIaCQLAeYaUkkwAcQQEga4kHPB+Rk-n+bFUXU+nzp+xl-q4zwvG8uo+KwABSEDvJM9gQMgrAEEUhROvlNFMliBZ4CYQTZCQnz0gJyYoKuwDIFAlXVVO+UADLQMgLDAGAZAsCYEB8NARBGvAPCUvASLICW+6LiYU0VMA6CisgQSWnAACCa1EAAjqQwAKoNhQ0HZxGuGJJn6El1HEHRQncLEHxMNycB4MgQP1cyr0ZRan3Rc9SLzX6mT0BArgHiDQO4vFyAmD4AAkCBvYlyFUdFNAHm5IihdFIhAA)
 - [fetching data](https://www.typescriptlang.org/play?noUncheckedIndexedAccess=true&noUnusedLocals=true&noUnusedParameters=true&target=99&jsx=0&useUnknownInCatchVariables=true&noImplicitOverride=true&noFallthroughCasesInSwitch=true&exactOptionalPropertyTypes=true&pretty=true#code/JYWwDg9gTgLgBAbzgQwM6oKawMoFcDG+G6ANHBgB5FgzAQB2ZAolRjXfcgDZcCeZqAkXRwAvnABmUCCDgByStVoNufOQCh1Aei1wAtAcNHjJ02fMXLV6zcuadcACYYJwehifAJErBnrwWJQ44fC40TFRJaBQeOABrN0c4CAlyVnYGVG1dADkAeQAVJgAuOFQZDAALCAB3OALeMAxsfChgGhDkejl4Z1RaegBzXFRKuAAjDBgajD9Pb19-OABhMPRiOBhK5F6sYAA3DykZOAADJihpKFOAOmy4B8e4AEFI5Dga6DjkaVx6JJmnXoZSmKDgYGkTVgvDgblQwGcm228FC4U2EDgIGQcQ8bh8UD8RA+XxQg2QbjuqJEOSmnygcUCbGUwMoMD8jkiFyuiHUAEgHAABGCoPTAQb0aAeLYeAAKYV4g1+-ycEA2EvgUPh-SRHlOEoAqvQRhhHAAZCD4bioU4hBiuQZ8gnIRwMPhwADECLgAF44NheCBxhAuAAKOQ06ZfRkZboASnUonUVMiABEMPgIM4AFLlejR5lpNn-TmXaIIPmC4Wi8WSnVwOXIBVKpIutUQDVYLXwaVnA1GzBmi1Wm0Z+j2x0YZ2umGepK+-2B4NhtMZ7O5-McOTxxPJuAACRgMDAG4YhfZJe55f5uiFIrFEoJdYbTYgfxbqsi6vBneA2p7eogQ1jUHS0uGtW0xzFCcp3oN1Zx9P0AyDUM5API8TzjBMkzWTlwBgXgUx2NApgws9izgLkywrG8q3vWse2fRVX2VVtP3bb8oC7OsAKAgdzVA8DR3HXknRdWCZy9eckKXOQmDwgiiMwGAMK3LD7hqSo5h8GB8EqNxBicIiyHeHw6i2fTIktYFtjAJp6BuG4Pk04FyhAKY9KGSRyTAshgHgX84EGCBM3ReIJTqDSdjgbZIhgNpBkGXwkh7X9BAwJNMngbTdMImB3l9NBeHofA4AAHgAJSmXAoHoBomgAPhDdlIDcGBSn6NohljH16p5XlR21bLKkqwQuHgAqanJLKpl0pr-ha-x415XkbktHTKianq0iCBgQ3cOoIzpBl0mZJrY3OuAHB7TAoEOKBbVwLgkkmOA-mQfZvOQcYuA8By7l5Lw4BDIaRse-z6H6LoiBSCiTo4VReG6gkYGq4EQeIMHLt0MA0QkaBJqgJJFCZDhNGvOA-rrAkAEdcGIFFXyerzgC4D4-LGd5IZR1BVw8AAWCgKGSe6AFZBYphy+UBkMAEJ0dGmAbggOIkaqmrtpJ3b9v3Q9jzh3bTgAEgQeWwZuLmRlEUpjdNsbzby7mClZURTnOsmBt6IjQbGhDkEmvzJBm4aMbtgArXMQyWlbpXoENHCIrb47ylBIkqlGarqjAo9WnZZo8b1euJmM9owOoV0zDAcwYDCzouhxKeiHscd4LgIGdB6mYG394BhtwPq4L0s2wPIcgl-7paT5BvfByHiowGGMIR1X0+BSfp6x8Fcfxn4if1+gyel55LkbG5fyPqBGzjr2Q5gbqADI77gGW15vm4fqGLZuqvES1ZZPeS7qHJGgCk8pKRrnXXQDd7pYl4C9Hs-cEQ7GCDDHsk8O5JAkN5CWfJEwThXmUIQxBUBXzytPbq9cHIoGVK4TgPAYRDX0oZZOGZHpJCtBiF6ghCBEIkI9NSDhbCCKEcIkRoi7DqHwk0OA+oboISvAidqcV9J8k4G5RRnUHS4I9oFKYMjOy+1QEVEqkctpXm0UNPRnF14TSmoHdauVkClUsQAbQALqNTkJUXWqBig6FchgPQyAwDAFWjILQxpOKqWok5PwGA7ofA8IleA4xkD4DiGCAkCsyCAlGIzJIul0zpLxvdIuzJIiuE4jAKWqRgZB0sagaep9UAYS-nyfqmVtoIQsTdBpN9I5tIcNsf4P0wREFgOSYEkiPAw1KcERIBwES4ARm06WihYQQzynPGGh0ox71actH++DZm7TkMsPJcAvxDVej0xycpJyYE2FAGEyAyRuDgGENkUAbiqWWrg5aDhARiR6HAJ0dDOiPi+q+bsmkzhAPwg4sBe8bSaQJAIDEgJkaoyoeQeSKBj68BWTUtZcJNnQ1SHCkBxFlJ7L6stTF6suHCGIW4qOfzyZvNUMkaU91LQRGyR4elwJ3iJXcBfVmWBuRuXQC89KdLf4a2LnIQ0lAmj4DZETUsXz6w-WIhBPKaq6yCFstAGAeg2TIBAN8pafyrowsyZjKy5B2ZYAmB4RlPDHpUPyQwPKbzXz3QiZEaIL0UGNF1BShFJEkV8m0YGrpdSenT36dEl0ZQKjmU8jUdmdZJ4xsyMGDAp8xwQBDKcd16BeFgqGiaOAxtA1vz8IMLY4hA2uzJoKgh3D0AhkDeQ7GW8oAExbERfhugxHjonZOqdehNDaKSc8HgljVEbAKoY4qQNuoFz6rGxNN9fb+3gEk+p-TyZxLmMgCQnzMRg3aCM9w-Qa28OKgWUCYEElAkxNiN11UPCRXgJyyA6BgDfWmbgHSFRLJdFddUoGgbGm-habShwUUezsmSKkf14JpCKgtZIVuEUjhuARkiaQZkYUSsbsicgNxBiOSSXISIjhfxgHlDWmAGIewRLaVsUjFzS4UU1T23dCtI7WrJgCjwjqsQ4gIY+LYUVATbEOJ0daCg2GxGORDaJmcWhtA6Fm2IP14C8FfGFWosJUgmdwFEKASTQpDMcCMqDmnolxRhOxkFGAQAQGUz2Ae7gkQocqKR2KMLKL3UhcproSQrNyFiJgDwznNXRV8HycIWAYB4C7cQuDN94zRKCx4NDGL5WoITlmrYUKPgX1sowvyaLYQoigy9AauA3JJA5cCEYSzWaTQJYcrFuWROxhuFiMAIYQxIGXWITdvVl3bnsGO6dy2VureMLOjpUA-gGKMRu0xeaNnXKwMuyINiA7zsXTdE7J6BoFqLXjITx2LXEAW+oLbsd4xAA)
+
+<!---------------------------------------------------------------------------------------------------------->
 
 ## API
 
@@ -194,6 +198,8 @@ All the core functionalty to use in any project.
   type Data = ExtractExceptionType<typeof result> // => `Exception<string>`
   ```
 
+<!---------------------------------------------------------------------------->
+
 ### `exceptionally/assert`
 
 Useful assertion functions.
@@ -242,7 +248,7 @@ Useful assertion functions.
   }
   ```
 
-<!-- ---------------------------------------------------------------------------------------------------- -->
+<!---------------------------------------------------------------------------------------------------------->
 
 ## Best Practices
 
@@ -256,7 +262,7 @@ Useful assertion functions.
   \
   Having an **unique meaningful identifier** for each kind of error (e.g. validation, network-issues, etc.) will help you understand what has happened even after 3 or more levels of function calls. It makes it easy to handle only specific exceptions and deliver better error messages to your users.
 
-<!-- ---------------------------------------------------------------------------------------------------- -->
+<!---------------------------------------------------------------------------------------------------------->
 
 ## Glossary
 
