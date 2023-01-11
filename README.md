@@ -3,10 +3,11 @@
 **A fully type-safe and lightweight way of using exceptions instead of throwing errors**
 
 :safety_vest: fully typesafe\
-:baby_chick: lightweight (197 bytes)\
+:baby_chick: lightweight core library (126 bytes)\
+:gear: useful utility functions\
 :running: almost no runtime overhead\
 :ok_hand: easy to use syntax\
-:handshake: works everywhere (browser, node, cjs, esm)\
+:handshake: works everywhere (browser, node, cjs, esm, etc.)\
 :warning: can warn you about unhandled exceptions\
 :no_entry: no external dependencies
 
@@ -76,7 +77,7 @@ const doSomething = () => {
   // whenever you usually throw, return an `exception` instead
   // you can pass additional payload if you want
   if (value < 0.1) return exception('please try again')
-  
+
   // if a function can return an `exception`, you should wrap the returned element with `success`
   return success(value)
 }
@@ -94,18 +95,23 @@ if (result.isException) {
 console.info(result().toPrecision(2)) // => e.g. '0.57'
 ```
 
-
 ## Examples
 
 - [input validation](https://www.typescriptlang.org/play?noUncheckedIndexedAccess=true&noUnusedLocals=true&noUnusedParameters=true&target=99&jsx=0&useUnknownInCatchVariables=true&noImplicitOverride=true&noFallthroughCasesInSwitch=true&exactOptionalPropertyTypes=true&pretty=true#code/JYWwDg9gTgLgBAbzgUwB4GNlhsCA7AGjgGcBXdTY4uAXzgDMoIQ4ByNTbXPAQwBs+AT1YAoEQHpxcALSy58hYqXKVqteo2a1Y9PmLwAbv2AATHjGRwAvHAA8AEXM8AfAAozMHgC44jz0SM+U3NoH3cnHz8eAEprZzgYKFJLAB8SROA8AHNYq3iEEQBIXTx9OGBiAHkAa2s4QOCYaHDPaKLgejhXCprrKxtE5NioZBhSKDwSckpiFpixQpGxiZQMLBx8bqrqtpoxSRktI+OT07PVMRhBMEsABQgymwLCnlIYAAtQ9KhMrKKcGB8ZA+fQ-bJFEoWPAwEEZcF7EQlMqQfQANWMHmgdVcKJhcHu+ly+SKByW40mIGQPDwv3opD4KCgTCgcEpVB4WWQ1AA7u9kJNiMxRu9fuVqJkGiZ2p1XABCXEAOleH2gw1G5LYACJlZ8oJrWRViL9RNKuvKHjAFQCgWrlpNWJrrch9SBDcbTTiLVbgIDkAqgdkPnB4gBGABMAAZbRqHU6XaQygAjSzEXUWFkfalwcMRuDod48KA8dDp4gmwodM2KyH8mDRlYOmvQl1u7KiCsyxVO-38rJB2xwACsEajcDJDc1TZg8bKkJ4mTg5jgQJ4ZWHufzheLpfLpPVKwABoNkAe4Lz+fUMeZuHAwKviFyiuPJseRAikfBiDwDMgCfAbKugh4OgXS4j4f5EogEJ6IYV4bHgABKXL0v+l5BB4yCevoRC4ui6EhFAbQdl0krXvgSFkHwloVAAomsXD4PWkykfBFEoXABx3lQDDQNyhYmKsnDwQsBxfgYoofJYHg8GefLMXBN4FtQXEPlKxQweUAk2CGHFSDwfE+iQ36-haAAqEBRImq6YbibRPvuArTFysymLs+xSOcnled5PnSGIaCQLAeYaUkkwAcQQEga4kHPB+Rk-n+bFUXU+nzp+xl-q4zwvG8uo+KwABSEDvJM9gQMgrAEEUhROvlNFMliBZ4CYQTZCQnz0gJyYoKuwDIFAlXVVO+UADLQMgLDAGAZAsCYEB8NARBGvAPCUvASLICW+6LiYU0VMA6CisgQSWnAACCa1EAAjqQwAKoNhQ0HZxGuGJJn6El1HEHRQncLEHxMNycB4MgQP1cyr0ZRan3Rc9SLzX6mT0BArgHiDQO4vFyAmD4AAkCBvYlyFUdFNAHm5IihdFIhAA)
 - [fetching data](https://www.typescriptlang.org/play?noUncheckedIndexedAccess=true&noUnusedLocals=true&noUnusedParameters=true&target=99&jsx=0&useUnknownInCatchVariables=true&noImplicitOverride=true&noFallthroughCasesInSwitch=true&exactOptionalPropertyTypes=true&pretty=true#code/JYWwDg9gTgLgBAbzgQwM6oKawMoFcDG+G6ANHBgB5FgzAQB2ZAolRjXfcgDZcCeZqAkXRwAvnABmUCCDgByStVoNufOQCh1Aei1wAtAcNHjJ02fMXLV6zcuadcACYYJwehifAJErBnrwWJQ44fC40TFRJaBQeOABrN0c4CAlyVnYGVG1dADkAeQAVJgAuOFQZDAALCAB3OALeMAxsfChgGhDkejl4Z1RaegBzXFRKuAAjDBgajD9Pb19-OABhMPRiOBhK5F6sYAA3DykZOAADJihpKFOAOmy4B8e4AEFI5Dga6DjkaVx6JJmnXoZSmKDgYGkTVgvDgblQwGcm228FC4U2EDgIGQcQ8bh8UD8RA+XxQg2QbjuqJEOSmnygcUCbGUwMoMD8jkiFyuiHUAEgHAABGCoPTAQb0aAeLYeAAKYV4g1+-ycEA2EvgUPh-SRHlOEoAqvQRhhHAAZCD4bioU4hBiuQZ8gnIRwMPhwADECLgAF44NheCBxhAuAAKOQ06ZfRkZboASnUonUVMiABEMPgIM4AFLlejR5lpNn-TmXaIIPmC4Wi8WSnVwOXIBVKpIutUQDVYLXwaVnA1GzBmi1Wm0Z+j2x0YZ2umGepK+-2B4NhtMZ7O5-McOTxxPJuAACRgMDAG4YhfZJe55f5uiFIrFEoJdYbTYgfxbqsi6vBneA2p7eogQ1jUHS0uGtW0xzFCcp3oN1Zx9P0AyDUM5API8TzjBMkzWTlwBgXgUx2NApgws9izgLkywrG8q3vWse2fRVX2VVtP3bb8oC7OsAKAgdzVA8DR3HXknRdWCZy9eckKXOQmDwgiiMwGAMK3LD7hqSo5h8GB8EqNxBicIiyHeHw6i2fTIktYFtjAJp6BuG4Pk04FyhAKY9KGSRyTAshgHgX84EGCBM3ReIJTqDSdjgbZIhgNpBkGXwkh7X9BAwJNMngbTdMImB3l9NBeHofA4AAHgAJSmXAoHoBomgAPhDdlIDcGBSn6NohljH16p5XlR21bLKkqwQuHgAqanJLKpl0pr-ha-x415XkbktHTKianq0iCBgQ3cOoIzpBl0mZJrY3OuAHB7TAoEOKBbVwLgkkmOA-mQfZvOQcYuA8By7l5Lw4BDIaRse-z6H6LoiBSCiTo4VReG6gkYGq4EQeIMHLt0MA0QkaBJqgJJFCZDhNGvOA-rrAkAEdcGIFFXyerzgC4D4-LGd5IZR1BVw8AAWCgKGSe6AFZBYphy+UBkMAEJ0dGmAbggOIkaqmrtpJ3b9v3Q9jzh3bTgAEgQeWwZuLmRlEUpjdNsbzby7mClZURTnOsmBt6IjQbGhDkEmvzJBm4aMbtgArXMQyWlbpXoENHCIrb47ylBIkqlGarqjAo9WnZZo8b1euJmM9owOoV0zDAcwYDCzouhxKeiHscd4LgIGdB6mYG394BhtwPq4L0s2wPIcgl-7paT5BvfByHiowGGMIR1X0+BSfp6x8Fcfxn4if1+gyel55LkbG5fyPqBGzjr2Q5gbqADI77gGW15vm4fqGLZuqvES1ZZPeS7qHJGgCk8pKRrnXXQDd7pYl4C9Hs-cEQ7GCDDHsk8O5JAkN5CWfJEwThXmUIQxBUBXzytPbq9cHIoGVK4TgPAYRDX0oZZOGZHpJCtBiF6ghCBEIkI9NSDhbCCKEcIkRoi7DqHwk0OA+oboISvAidqcV9J8k4G5RRnUHS4I9oFKYMjOy+1QEVEqkctpXm0UNPRnF14TSmoHdauVkClUsQAbQALqNTkJUXWqBig6FchgPQyAwDAFWjILQxpOKqWok5PwGA7ofA8IleA4xkD4DiGCAkCsyCAlGIzJIul0zpLxvdIuzJIiuE4jAKWqRgZB0sagaep9UAYS-nyfqmVtoIQsTdBpN9I5tIcNsf4P0wREFgOSYEkiPAw1KcERIBwES4ARm06WihYQQzynPGGh0ox71actH++DZm7TkMsPJcAvxDVej0xycpJyYE2FAGEyAyRuDgGENkUAbiqWWrg5aDhARiR6HAJ0dDOiPi+q+bsmkzhAPwg4sBe8bSaQJAIDEgJkaoyoeQeSKBj68BWTUtZcJNnQ1SHCkBxFlJ7L6stTF6suHCGIW4qOfzyZvNUMkaU91LQRGyR4elwJ3iJXcBfVmWBuRuXQC89KdLf4a2LnIQ0lAmj4DZETUsXz6w-WIhBPKaq6yCFstAGAeg2TIBAN8pafyrowsyZjKy5B2ZYAmB4RlPDHpUPyQwPKbzXz3QiZEaIL0UGNF1BShFJEkV8m0YGrpdSenT36dEl0ZQKjmU8jUdmdZJ4xsyMGDAp8xwQBDKcd16BeFgqGiaOAxtA1vz8IMLY4hA2uzJoKgh3D0AhkDeQ7GW8oAExbERfhugxHjonZOqdehNDaKSc8HgljVEbAKoY4qQNuoFz6rGxNN9fb+3gEk+p-TyZxLmMgCQnzMRg3aCM9w-Qa28OKgWUCYEElAkxNiN11UPCRXgJyyA6BgDfWmbgHSFRLJdFddUoGgbGm-habShwUUezsmSKkf14JpCKgtZIVuEUjhuARkiaQZkYUSsbsicgNxBiOSSXISIjhfxgHlDWmAGIewRLaVsUjFzS4UU1T23dCtI7WrJgCjwjqsQ4gIY+LYUVATbEOJ0daCg2GxGORDaJmcWhtA6Fm2IP14C8FfGFWosJUgmdwFEKASTQpDMcCMqDmnolxRhOxkFGAQAQGUz2Ae7gkQocqKR2KMLKL3UhcproSQrNyFiJgDwznNXRV8HycIWAYB4C7cQuDN94zRKCx4NDGL5WoITlmrYUKPgX1sowvyaLYQoigy9AauA3JJA5cCEYSzWaTQJYcrFuWROxhuFiMAIYQxIGXWITdvVl3bnsGO6dy2VureMLOjpUA-gGKMRu0xeaNnXKwMuyINiA7zsXTdE7J6BoFqLXjITx2LXEAW+oLbsd4xAA)
 
-### exposed functions
+## API
 
-- **`success`**:
-  ```ts
-  const success: <Data>(data: Data) => Success<Data>
-  ```
+### `exceptionally` - core functionality
+
+All the core functionalty to use in any project.
+
+`import * from 'exceptionally'`
+
+#### exposed functions
+
+- **`success`**
+- Wrap any value into a `Success` object.
 
   ```ts
   import { success } from 'exceptionally'
@@ -121,10 +127,9 @@ console.info(result().toPrecision(2)) // => e.g. '0.57'
   result() // => `'hello world'`
   ```
 
-- **`exception`**:
-  ```ts
-  const exception: <Data>(data: Data) => Exception<Data>
-  ```
+- **`exception`**
+
+  Wrap any value into an `Exception` object.
 
   ```ts
   import { exception } from 'exceptionally'
@@ -140,88 +145,29 @@ console.info(result().toPrecision(2)) // => e.g. '0.57'
   result() // => `"Don't tell me what to do!"`
   ```
 
-- **`assertSuccess`**:
-  ```ts
-  const assertSuccess: <Result extends Success<unknown>>(result: Result) => asserts result is Result
-  ```
+- **`isExceptionallyInstance`**
+
+  To check if any given value is a `Success` or `Exception` object.
 
   ```ts
-  import { assertSuccess, exception } from 'exceptionally'
-
-  const doSomething = () => {
-  	const result = Math.random() > 0.5 ? success(1) : exception(0)
-
-  	if (result.isException) throw new Error(result())
-
-  	assertSuccess(result)
-
-  	return success()
-  }
-  ```
-
-- **`assertException`**:
-  ```ts
-  const assertException: <Result extends Exception<unknown>>(result: Result) => asserts result is Result
-  ```
-
-  ```ts
-  import { assertException, exception } from 'exceptionally'
-
-  const doSomething = () => {
-  	const result = Math.random() > 0.5 ? success(1) : exception(0)
-
-  	if (result.isSuccess) return result()
-
-  	assertException(result)
-  	throw new Error(result())
-  }
-  ```
-
-- **`Exceptionally`**:
-  ```ts
-  type Inverted<Success extends boolean> = Success extends true ? false : true
-
-  class Exceptionally<Success extends boolean> {
-  	readonly isSuccess: Success
-  	readonly isException: Inverted<Success>
-  }
-  ```
-
-  ```ts
-  import { success, Exceptionally } from 'exceptionally'
+  import { Exceptionally, success } from 'exceptionally'
 
   const result = Math.random() > 0.5 ? success(1) : 0
 
-  if (result instanceOf Exceptionally) {
-     const data = result()
-     console.info(data) // => `1`
+  if (isExceptionallyInstance(result)) {
+  	const data = result()
+  	console.info(data) // => `1`
   } else {
-     console.info(result) // => `0`
+  	console.info(result) // => `0`
   }
   ```
 
-### exposed types
+#### exposed types
 
-- **`ExceptionallyResult`**:
-  ```ts
-  type ExceptionallyResult<Success extends boolean, Data> = () => Data & Exceptionally<Success>
-  ```
+- **`ExceptionallyResult`**
 - **`Success`**
-  ```ts
-  type Success<Data> = ExceptionallyResult<true, Data>
-  ```
-
 - **`Exception`**
-  ```ts
-  type Exception<Data> = ExceptionallyResult<false, Data>
-  ```
-
 - **`ExtractDataType`**
-  ```ts
-  type ExtractDataType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
-  	ExceptionallyResult<boolean, infer Data> ? Data : never
-  ```
-
   ```ts
   import { ExtractDataType, success } from 'exceptionally'
 
@@ -232,11 +178,6 @@ console.info(result().toPrecision(2)) // => e.g. '0.57'
 
 - **`ExtractSuccessType`**
   ```ts
-  type ExtractSuccessType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
-  	ExceptionallyResult<true, infer Data> ? Success<Data> : never
-  ```
-
-  ```ts
   import { exception, ExtractSuccessType, success } from 'exceptionally'
 
   const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
@@ -246,16 +187,59 @@ console.info(result().toPrecision(2)) // => e.g. '0.57'
 
 - **`ExtractExceptionType`**
   ```ts
-  type ExtractExceptionType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
-  	ExceptionallyResult<false, infer Data> ? Exception<Data> : never
-  ```
-
-  ```ts
   import { exception, ExtractExceptionType, success } from 'exceptionally'
 
   const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
 
   type Data = ExtractExceptionType<typeof result> // => `Exception<string>`
+  ```
+
+### `exceptionally/assert`
+
+Useful assertion functions.
+
+`import * from 'exceptionally/assert'`
+
+#### exposed functions
+
+- **`assertSuccess`**
+
+  To really make sure that you have handled all exceptions above.
+
+  ```ts
+  import { assertSuccess, exception } from 'exceptionally'
+
+  const doSomething = () => {
+  	const result = Math.random() > 0.5 ? success(1) : exception(0)
+
+  	// oops, some important code was commented out
+  	// if (result.isException) throw new Error(result())
+
+  	// will show a `TypeScript` error and throw a runtime error
+  	assertSuccess(result)
+
+  	return success()
+  }
+  ```
+
+- **`assertException`**
+
+  To really make sure that you are dealing with an exception.
+
+  ```ts
+  import { assertException, exception } from 'exceptionally'
+
+  const doSomething = () => {
+  	const result = Math.random() > 0.5 ? success(1) : exception(0)
+
+  	// oops, some important code was commented out
+  	// if (result.isSuccess) return result()
+
+  	// will show a `TypeScript` error and throw a runtime error
+  	assertException(result)
+
+  	throw new Error(result())
+  }
   ```
 
 <!-- ---------------------------------------------------------------------------------------------------- -->
