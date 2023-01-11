@@ -63,11 +63,6 @@
 			"types": "./lib/assert/index.d.ts",
 			"require": "./lib/assert/index.cjs",
 			"import": "./lib/assert/index.js"
-		},
-		"./core": {
-			"types": "./lib/core/index.d.ts",
-			"require": "./lib/core/index.cjs",
-			"import": "./lib/core/index.js"
 		}
 	},
 	"files": [
