@@ -7,11 +7,11 @@ const config = [
 	},
 	{
 		path: 'lib/index.cjs',
-		limit: '222 b',
+		limit: '219 b',
 	},
 	{
 		path: 'lib/index.global.js',
-		limit: '204 b',
+		limit: '203 b',
 	},
 ]
 

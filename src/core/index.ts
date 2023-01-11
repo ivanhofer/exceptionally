@@ -2,7 +2,7 @@
 
 const exceptionally = Symbol()
 
-export const isExceptionallyInstance = <Success extends boolean, Data>(
+export const isExceptionallyResult = <Success extends boolean, Data>(
 	value: unknown,
 ): value is ExceptionallyResult<Success, Data> =>
 	(value as Record<string, unknown> | undefined)?.exceptionally === exceptionally
@@ -26,7 +26,7 @@ const wrap = <Success extends boolean, Data>(
 	success: Success,
 	data: Data,
 ): Data extends ExceptionallyResult<boolean, unknown> ? Data : ExceptionallyResult<Success, Data> =>
-	(isExceptionallyInstance(data)
+	(isExceptionallyResult(data)
 		? data
 		: Object.assign(
 			() => data,

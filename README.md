@@ -149,7 +149,7 @@ All the core functionalty to use in any project.
   result() // => `"Don't tell me what to do!"`
   ```
 
-- **`isExceptionallyInstance`**
+- **`isExceptionallyResult`**
 
   To check if any given value is a `Success` or `Exception` object.
 
@@ -158,7 +158,7 @@ All the core functionalty to use in any project.
 
   const result = Math.random() > 0.5 ? success(1) : 0
 
-  if (isExceptionallyInstance(result)) {
+  if (isExceptionallyResult(result)) {
   	const data = result()
   	console.info(data) // => `1`
   } else {
