@@ -2,13 +2,12 @@
 
 const exceptionally = Symbol()
 
-type Inverted<Success extends boolean> = Success extends true ? false : true
+const isExceptionallyInstance = <Success extends boolean, Data>(
+	value: unknown,
+): value is ExceptionallyResult<Success, Data> =>
+	(value as Record<string, unknown> | undefined)?.exceptionally === exceptionally
 
-export class Exceptionally {
-	static [Symbol.hasInstance](object: unknown) {
-		return (object as Record<string, unknown> | undefined)?.exceptionally === exceptionally
-	}
-}
+type Inverted<Success extends boolean> = Success extends true ? false : true
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -17,8 +16,8 @@ type GetDataFn<Data> = () => Data
 export type ExceptionallyResult<Success extends boolean, Data> = Success extends true ? SuccessOf<Data>
 	: ExceptionOf<Data>
 
-type SuccessOf<Data> = GetDataFn<Data> & Exceptionally & { isSuccess: true; isException: false }
-type ExceptionOf<Data> = GetDataFn<Data> & Exceptionally & { isSuccess: false; isException: true }
+type SuccessOf<Data> = GetDataFn<Data> & { isSuccess: true; isException: false }
+type ExceptionOf<Data> = GetDataFn<Data> & { isSuccess: false; isException: true }
 
 type Wrap<Success extends boolean, Data> = Data extends ExceptionallyResult<boolean, unknown> ? Data
 	: ExceptionallyResult<Success, Data>
@@ -27,7 +26,7 @@ const wrap = <Success extends boolean, Data>(
 	success: Success,
 	data: Data,
 ): Data extends ExceptionallyResult<boolean, unknown> ? Data : ExceptionallyResult<Success, Data> =>
-	(data instanceof Exceptionally
+	(isExceptionallyInstance(data)
 		? data
 		: Object.assign(
 			() => data,
