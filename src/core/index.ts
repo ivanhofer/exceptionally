@@ -1,6 +1,4 @@
-/* eslint-disable symbol-description */
-
-const exceptionally = Symbol()
+const exceptionally = Symbol.for('exceptionally')
 
 export const isExceptionallyResult = <Success extends boolean, Data>(
 	value: unknown,
