@@ -2,7 +2,7 @@
 
 const exceptionally = Symbol()
 
-const isExceptionallyInstance = <Success extends boolean, Data>(
+export const isExceptionallyInstance = <Success extends boolean, Data>(
 	value: unknown,
 ): value is ExceptionallyResult<Success, Data> =>
 	(value as Record<string, unknown> | undefined)?.exceptionally === exceptionally
