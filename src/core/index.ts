@@ -59,11 +59,17 @@ export const exception = <Data = undefined>(
 
 // --------------------------------------------------------------------------------------------------------------------
 
-export type ExtractDataType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+export type ExtractData<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<boolean, infer Data> ? Data : never
 
-export type ExtractSuccessType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+export type ExtractSuccess<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<true, infer Data> ? Success<Data> : never
 
-export type ExtractExceptionType<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+export type ExtractSuccessData<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+	ExceptionallyResult<true, infer Data> ? Data : never
+
+export type ExtractException<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
 	ExceptionallyResult<false, infer Data> ? Exception<Data> : never
+
+export type ExtractExceptionData<Result extends ExceptionallyResult<boolean, unknown>> = Result extends
+	ExceptionallyResult<false, infer Data> ? Data : never

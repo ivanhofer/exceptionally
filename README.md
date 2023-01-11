@@ -168,34 +168,93 @@ All the core functionalty to use in any project.
 
 #### exposed types
 
-- **`ExceptionallyResult`**
 - **`Success`**
+
+  The type returned by `success()`.
+
+  ```ts
+  import { type Success, success } from 'exceptionally'
+
+  const result: Success = success(1)
+  ```
+
 - **`Exception`**
-- **`ExtractDataType`**
+
+  The type returned by `exception()`.
+
   ```ts
-  import { ExtractDataType, success } from 'exceptionally'
+  import { type Exception, exception } from 'exceptionally'
 
-  const result = success(1)
-
-  type Data = ExtractDataType<typeof result> // => `number`
+  const result: Exception = exception(1)
   ```
 
-- **`ExtractSuccessType`**
+- **`ExceptionallyResult`**
+
+  Either a `Success` or a `Exception`.
+
   ```ts
-  import { exception, ExtractSuccessType, success } from 'exceptionally'
+  import { exception, type ExceptionallyResult } from 'exceptionally'
+
+  const result: ExceptionallyResult = Math.random() > 0.5 ? success(1) : exception(0)
+  ```
+
+- **`ExtractSuccess`**
+
+  Get the type of the `Success` object from a `ExceptionallyResult`.
+
+  ```ts
+  import { exception, type ExtractSuccess, success } from 'exceptionally'
 
   const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
 
-  type Data = ExtractSuccessType<typeof result> // => `Success<Date>`
+  type Data = ExtractSuccess<typeof result> // => `Success<Date>`
   ```
 
-- **`ExtractExceptionType`**
+- **`ExtractException`**
+- Get the type of the `Exception` object from a `ExceptionallyResult`.
+
   ```ts
-  import { exception, ExtractExceptionType, success } from 'exceptionally'
+  import { exception, type ExtractException, success } from 'exceptionally'
 
   const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
 
-  type Data = ExtractExceptionType<typeof result> // => `Exception<string>`
+  type Data = ExtractException<typeof result> // => `Exception<string>`
+  ```
+
+- **`ExtractData`**
+
+  Get the type of the data wrapped in a `ExceptionallyResult`.
+
+  ```ts
+  import { type ExtractData, success } from 'exceptionally'
+
+  const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
+
+  type Data = ExtractData<typeof result> // => `Date | string`
+  ```
+
+- **`ExtractSuccessData`**
+
+  Get the type of the data wrapped in a `Success`.
+
+  ```ts
+  import { exception, type ExtractSuccessData, success } from 'exceptionally'
+
+  const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
+
+  type Data = ExtractSuccessData<typeof result> // => `Date`
+  ```
+
+- **`ExtractExceptionData`**
+
+  Get the type of the data wrapped in an `Exception` object.
+
+  ```ts
+  import { exception, type ExtractExceptionData, success } from 'exceptionally'
+
+  const result = Math.random() > 0.5 ? success(new Date()) : exception('error')
+
+  type Data = ExtractExceptionData<typeof result> // => `string`
   ```
 
 <!---------------------------------------------------------------------------->
