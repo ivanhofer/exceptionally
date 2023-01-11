@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { assertException, type Exception, exception, success } from './index.js'
+import { type Exception, exception, success } from '../core/index.js'
+import { assertException } from './index.js'
 
 {
 	const e = exception('data')

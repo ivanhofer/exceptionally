@@ -1,7 +1,7 @@
-import { exception, success } from '../src/index.js'
+import { exception, success } from './index.js'
 
 import { describe, expect, test } from 'vitest'
-import { testDataMatrix } from './test.utils.js'
+import { testDataMatrix } from '../../test/test.utils.js'
 
 describe('success', () => {
 	test('should return true for isSuccess', () => {

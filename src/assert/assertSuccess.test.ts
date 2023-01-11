@@ -1,7 +1,8 @@
-import { assertSuccess, exception, success } from '../src/index.js'
+import { exception, success } from '../core/index.js'
+import { assertSuccess } from './index.js'
 
 import { describe, expect, test } from 'vitest'
-import { testDataMatrix } from './test.utils.js'
+import { testDataMatrix } from '../../test/test.utils.js'
 
 describe('assertSuccess', () => {
 	test('should not throw when passing success to assertSuccess', () => {

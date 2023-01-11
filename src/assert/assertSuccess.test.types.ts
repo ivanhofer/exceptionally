@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { assertSuccess, exception, type Success, success } from './index.js'
+import { exception, type Success, success } from '../core/index.js'
+import { assertSuccess } from './index.js'
 
 {
 	const s = success('data')
