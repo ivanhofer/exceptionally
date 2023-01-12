@@ -6,7 +6,7 @@ import { assertExceptionAndUnwrap } from './index.js'
 {
 	const e = exception(123)
 
-	const r = assertExceptionAndUnwrap(s)
+	const r = assertExceptionAndUnwrap(e)
 
 	const sResult: number = r
 	// @ts-expect-error should be `number`
