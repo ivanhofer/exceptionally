@@ -17,7 +17,9 @@
 
 - [Problem Description](#problem-description)
 - [Solution](#solution)
-- [Usage](#usage)
+- [Basics](#basics)
+- [Examples](#examples)
+- [API](#api)
 - [Best Practices](#best-practices)
 - [Glossary](#glossary)
 
@@ -65,12 +67,12 @@ This packages delivers a solution to all the problems described above.
 npm install exceptionally
 ```
 
-> You should also set evetrything to [`strict` mode](https://www.typescriptlang.org/tsconfig#strict) in your `tsconfig.json` to get the most out of this package.
+> You should also set everything to [`strict` mode](https://www.typescriptlang.org/tsconfig#strict) in your `tsconfig.json` to get the most out of this package.
 
 ## Basics
 
 ```ts
-import { success, exception } from 'exceptioanlly'
+import { success, exception } from 'exceptionally'
 
 const doSomething = () => {
   const value = Math.random()
@@ -86,7 +88,7 @@ const result = doSomething()
 // instead of having to use `try-catch`, you simply check if the result is an exception
 if (result.isException) {
   // you can unwrap the exception, and the result will be typed as `string`
-  concole.error(result().toUppercase()) => 'PLEASE TRY AGAIN'
+  console.error(result().toUppercase()) => 'PLEASE TRY AGAIN'
   return
 }
 
@@ -108,7 +110,7 @@ console.info(result().toPrecision(2)) // => e.g. '0.57'
 
 ### `exceptionally` - core functionality
 
-All the core functionalty to use in any project.
+All the core functionality to use in any project.
 
 `import * from 'exceptionally'`
 
