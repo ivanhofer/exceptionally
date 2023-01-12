@@ -261,6 +261,83 @@ All the core functionality to use in any project.
 
 <!---------------------------------------------------------------------------->
 
+### `exceptionally/utils`
+
+Utility functions that wrap common use cases.
+
+`import * from 'exceptionally/utils'`
+
+#### exposed functions
+
+- **`tryCatch`**
+
+  A replacement for `try-catch` and `Promise.catch()`.
+  Per default it will log the error to the console.
+
+  ```ts
+  import { exception } from 'exceptionally'
+  import { tryCatch } from 'exceptionally/utils'
+
+  // You usually don't have control over external code. It might throw an exception.
+  const externalApi = {
+  	fetchProjects: () => {
+  		if (Math.random() < 0.1) {
+  			throw new Error('something went wrong')
+  		}
+
+  		return [1, 2, 3]
+  	},
+  }
+
+  // basic usage
+  const doSomething = () => {
+  	// Therefore you can to wrap it in a `tryCatch` to handle the exception.
+  	const result = tryCatch(() => externalApi.fetchProjects())
+  	if (result.isException) {
+  		return []
+  	}
+
+  	return result
+  }
+
+  // with exception callback
+  const doSomething = () => {
+  	// Therefore you can to wrap it in a `tryCatch` to handle the exception.
+  	const result = tryCatch(
+  		() => externalApi.fetchProjects(),
+  		(error: unknown) => {
+  			if (error instanceof Error) {
+  				return exception(error.message)
+  			}
+
+  			return exception('Some unexpected error occurred')
+  		},
+  	)
+  	if (result.isException) {
+  		return []
+  	}
+
+  	return result
+  }
+
+  // custom logger
+  const doSomething = () => {
+  	// Therefore you can to wrap it in a `tryCatch` to handle the exception.
+  	const result = tryCatch(
+  		() => externalApi.fetchProjects(),
+  		undefined, // <- the optional exception callback
+  		{ error: Sentry.captureException }, // will log the error to Sentry
+  	)
+  	if (result.isException) {
+  		return []
+  	}
+
+  	return result
+  }
+  ```
+
+<!---------------------------------------------------------------------------->
+
 ### `exceptionally/assert`
 
 Useful assertion functions.
