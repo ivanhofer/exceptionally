@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.1.0
+
+### Minor Changes
+
+- 1cfaa10: add `tryCatch` utility function
+
 ## 2.0.0
 
 ### Major Changes
