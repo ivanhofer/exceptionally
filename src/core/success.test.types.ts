@@ -16,15 +16,13 @@ type E2 = CheckIfSuccess<Success<Exception<'value'>>>
 {
 	const s = success('data')
 	const sIsSuccess: true = s.isSuccess
-	// @ts-expect-error should be `false`
-	const sIsException: true = s.isException
+	const sIsException: false = s.isException
 }
 
 {
 	const s = success()
 	const sIsSuccess: true = s.isSuccess
-	// @ts-expect-error should be `false`
-	const sIsException: true = s.isException
+	const sIsException: false = s.isException
 
 	const sType: undefined = s()
 }
@@ -34,8 +32,7 @@ type E2 = CheckIfSuccess<Success<Exception<'value'>>>
 {
 	const s = success(success(true as const))
 	const sIsSuccess: true = s.isSuccess
-	// @ts-expect-error should be `false`
-	const sIsException: true = s.isException
+	const sIsException: false = s.isException
 
 	const sType: true = s()
 }
@@ -43,8 +40,7 @@ type E2 = CheckIfSuccess<Success<Exception<'value'>>>
 {
 	const s = success(exception(5 as const))
 	const sIsSuccess: false = s.isSuccess
-	// @ts-expect-error should be `false`
-	const sIsException: false = s.isException
+	const sIsException: true = s.isException
 
 	const sType: 5 = s()
 }

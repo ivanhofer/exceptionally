@@ -8,14 +8,19 @@ import {
 } from '../core/index.js'
 
 type TryCatchResult<
-	Fn extends () => unknown | Promise<unknown>,
+	Type,
 	ErrorFn extends (error: unknown) => unknown,
 > =
-	| Success<Awaited<ReturnType<Fn>>>
+	| Success<Awaited<Type>>
 	| Exception<
 		ErrorFn extends undefined ? undefined
 			: ReturnType<ErrorFn>
 	>
+
+type DefineReturnType<Type, ErrorFn extends (error: unknown) => unknown> = Type extends never
+	? TryCatchResult<never, ErrorFn>
+	: Type extends Promise<unknown> ? Promise<TryCatchResult<Type, ErrorFn>>
+	: TryCatchResult<Type, ErrorFn>
 
 export const tryCatch = <
 	Fn extends () => unknown | Promise<unknown>,
@@ -24,9 +29,7 @@ export const tryCatch = <
 	fn: Fn,
 	errorFn?: ErrorFn,
 	logger: { error: (message: unknown) => void } | false = console,
-): ReturnType<Fn> extends never ? TryCatchResult<Fn, ErrorFn>
-	: ReturnType<Fn> extends Promise<unknown> ? Promise<TryCatchResult<Fn, ErrorFn>>
-	: TryCatchResult<Fn, ErrorFn> => {
+): DefineReturnType<ReturnType<Fn>, ErrorFn> => {
 	try {
 		const result = fn()
 		if (isAsync(result)) {
