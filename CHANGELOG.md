@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.2.0
+
+### Minor Changes
+
+- c32ba36: add `assertSuccessAndUnwrap` and `assertExceptionAndUnwrap` functions
+
 ## 2.1.0
 
 ### Minor Changes
