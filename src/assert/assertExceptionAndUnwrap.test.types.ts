@@ -14,7 +14,7 @@ import { assertExceptionAndUnwrap } from './index.js'
 }
 
 {
-	const o = { isexception: true, isException: false }
+	const o = { isSuccess: true, isException: false }
 
 	// @ts-expect-error should not accept arbitrary
 	assertExceptionAndUnwrap(o)
