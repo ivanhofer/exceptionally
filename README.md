@@ -386,6 +386,40 @@ Useful assertion functions.
   }
   ```
 
+- **`assertSuccessAndUnwrap`**
+
+  Useful for testing your application.\
+  _Will **not** show a TypeScript error like `assertSuccess` when passing an `exception` object_
+
+  ```ts
+  import { expectException } from 'exceptionally/assert'
+  import { describe, expect, it } from 'vitest' // or `jest` or other testing libraries
+
+  describe('login', () => {
+  	it('should return `true` if credentials are correct', async () => {
+  		expect(await assertSuccessAndUnwrap(login('username', 'password')))
+  			.toBe(true)
+  	})
+  })
+  ```
+
+- **`assertExceptionAndUnwrap`**
+
+  Useful for testing your application.\
+  _Will **not** show a TypeScript error like `assertException` when passing a `success` object_
+
+  ```ts
+  import { expectException } from 'exceptionally/assert'
+  import { describe, expect, it } from 'vitest' // or `jest` or other testing libraries
+
+  describe('login', () => {
+  	it('should handle invalid input', async () => {
+  		expect(await assertExceptionAndUnwrap(login('admin', 'invalid-password')))
+  			.toBeInstanceOf({ message: "Credentials don't match any user in this system" })
+  	})
+  })
+  ```
+
 <!---------------------------------------------------------------------------------------------------------->
 
 ## Best Practices

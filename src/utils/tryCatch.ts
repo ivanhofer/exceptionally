@@ -6,6 +6,7 @@ import {
 	type Success,
 	success,
 } from '../core/index.js'
+import { isAsync } from '../utils.js'
 
 type TryCatchResult<
 	Type,
@@ -49,9 +50,6 @@ export const tryCatch = <
 		return handleError(err, errorFn, logger) as any
 	}
 }
-
-const isAsync = <T>(p: unknown): p is Promise<T> =>
-	!!p && typeof p === 'object' && typeof (p as Promise<T>).then === 'function'
 
 const handleResult = <ErrorFn extends (error: unknown) => unknown>(
 	result: unknown,
