@@ -4,7 +4,7 @@ import { exception } from '../core/index.js'
 import { assertExceptionAndUnwrap } from './index.js'
 
 {
-	const s = exception(123)
+	const e = exception(123)
 
 	const r = assertExceptionAndUnwrap(s)
 
