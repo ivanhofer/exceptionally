@@ -11,16 +11,18 @@ type TryCatchResult<
 	Type,
 	ErrorFn extends (error: unknown) => unknown,
 > =
-	| Success<Awaited<Type>>
+	| Success<Type>
 	| Exception<
 		ErrorFn extends undefined ? undefined
 			: ReturnType<ErrorFn>
 	>
 
-type DefineReturnType<Type, ErrorFn extends (error: unknown) => unknown> = Type extends never
-	? TryCatchResult<never, ErrorFn>
-	: Type extends Promise<unknown> ? Promise<TryCatchResult<Type, ErrorFn>>
-	: TryCatchResult<Type, ErrorFn>
+type DefineReturnType<
+	Fn extends () => unknown | Promise<unknown>,
+	ErrorFn extends (error: unknown) => unknown,
+> = ReturnType<Fn> extends never ? TryCatchResult<ReturnType<Fn>, ErrorFn>
+	: ReturnType<Fn> extends Promise<unknown> ? Promise<TryCatchResult<Awaited<ReturnType<Fn>>, ErrorFn>>
+	: TryCatchResult<ReturnType<Fn>, ErrorFn>
 
 export const tryCatch = <
 	Fn extends () => unknown | Promise<unknown>,
@@ -29,7 +31,7 @@ export const tryCatch = <
 	fn: Fn,
 	errorFn?: ErrorFn,
 	logger: { error: (message: unknown) => void } | false = console,
-): DefineReturnType<ReturnType<Fn>, ErrorFn> => {
+): DefineReturnType<Fn, ErrorFn> => {
 	try {
 		const result = fn()
 		if (isAsync(result)) {
