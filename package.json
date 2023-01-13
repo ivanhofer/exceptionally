@@ -1,6 +1,6 @@
 {
 	"name": "exceptionally",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "A fully type-safe and lightweight way of using exceptions instead of throwing errors",
 	"scripts": {
 		"---- DEV -----------------------------------------------------------------------------": "",
