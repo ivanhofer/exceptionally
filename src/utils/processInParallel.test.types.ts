@@ -53,8 +53,8 @@ const decision: boolean = true
 }
 
 {
-	// @ts-expect-error must be promises (or else calling the function does not make sense)
 	const r = await processInParallel(
+		// @ts-expect-error must be promises (or else calling the function does not make sense)
 		[
 			success('One'),
 		] as const,
@@ -62,8 +62,8 @@ const decision: boolean = true
 }
 
 {
-	// @ts-expect-error functions must return an ExceptionallyResult
 	const r = await processInParallel(
+		// @ts-expect-error functions must return an ExceptionallyResult
 		[
 			Promise.resolve(1),
 		] as const,
