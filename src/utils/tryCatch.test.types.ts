@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { exception, success } from '../core/index.js'
+import { exception } from '../core/index.js'
 import { tryCatch } from './tryCatch.js'
 
 {
