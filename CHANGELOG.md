@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.3.0
+
+### Minor Changes
+
+- 44e448f: add `processInParallel` utility function
+
 ## 2.2.0
 
 ### Minor Changes
