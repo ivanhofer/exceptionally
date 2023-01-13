@@ -336,6 +336,41 @@ Utility functions that wrap common use cases.
   }
   ```
 
+  - **`processInParallel`**
+
+  Processes and unwraps multiple functions in parallel.\
+  The result is a `Success` if all functions were successful.\
+  If one of the functions returns an `Exception`, the full result will be an `Exception`.
+
+  ```ts
+  import { exception, success } from 'exceptionally'
+  import { processInParallel } from 'exceptionally/utils'
+
+  const loadUserDetails = async (): Promise<User> => {
+  	const user = await db.getUser()
+  	if (!user) return exception('Could not find user')
+
+  	return success(user)
+  }
+
+  const loadProjects = async (): Promise<Project[]> => {
+  	return success([])
+  }
+
+  const result = await processInParallel(
+  	[
+  		loadUserDetails(),
+  		loadProjects(),
+  	] as const,
+  ) // make sure to put `as const` to get proper type-safety
+
+  if (result.isException) {
+  	const [loadUserError, loadProjectError] = result() // => `[string | undefined, unknown]`
+  } else {
+  	const [user, projects] = result() // => `[User, Project[]]`
+  }
+  ```
+
 <!---------------------------------------------------------------------------->
 
 ### `exceptionally/assert`
