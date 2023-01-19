@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.3.1
+
+### Patch Changes
+
+- ea108f9: add comparison table
+
 ## 2.3.0
 
 ### Minor Changes
