@@ -484,8 +484,8 @@ There exist similar approaches how to best handle errors and exceptions in appli
 
 |                                                                                     | `exceptionally` | `[data,error] tuple` | `{data,error} object` | `neverthrow` | `@badrap/result` |
 | ----------------------------------------------------------------------------------- | --------------- | -------------------- | --------------------- | ------------ | ---------------- |
-| prevent try-catch blocks (example 1)                                                | ✅               | ✅                    | ✅                     | ✅            | ✅                |
-| typesafe error handling(example 1)                                                  | ✅               | ✅                    | ✅                     | ✅            | ✅                |
+| prevents try-catch blocks (example 1)                                               | ✅               | ✅                    | ✅                     | ✅            | ✅                |
+| typesafe error handling (example 1)                                                 | ✅               | ✅                    | ✅                     | ✅            | ✅                |
 | obvious how to handle falsy return values (example 2)                               | ✅               | ❌                    | ❌                     | ✅            | ✅                |
 | can access error object without needing to store it as a variable first (example 3) | ✅               | ❌                    | ❌                     | ✅            | ✅                |
 | does not require you to come up with new two variable names per result (example 4)  | ✅               | ❌                    | ❌                     | ✅            | ✅                |
@@ -495,7 +495,7 @@ There exist similar approaches how to best handle errors and exceptions in appli
 | will never throw (unless you really want it)                                        | ✅               | ✅                    | ✅                     | ❌            | ❌                |
 | offer useful functions to work with the library more easily                         | ✅               | ❌                    | ❌                     | ✅            | ✅                |
 | adds less than `0.5kb` to your bundle                                               | ✅               | ➖                    | ➖                     | ❌            | ❌                |
-| have chosen an "exceptionally" name 😋                                               | ✅               | ❌                    | ❌                     | ❌            | ❌                |
+| has chosen an "exceptionally" name 😋                                                | ✅               | ❌                    | ❌                     | ❌            | ❌                |
 
 > Do you have other examples? Please open a PR and add them to the table.
 
