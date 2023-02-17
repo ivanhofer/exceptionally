@@ -432,6 +432,31 @@ Useful assertion functions.
   }
   ```
 
+- **`assertExceptionsHandled`** & **`guardExceptionsHandled`**
+
+  To really make sure that you have handled all exceptions.
+
+  ```ts
+  import { exception } from 'exceptionally'
+  import { assertException, guardException } from 'exceptionally/assert'
+
+  const doSomething = () => {
+  	const result = Math.random() > 0.5 ? exception(new FetchException()) : exception(new Error())
+
+  	const exception = result()
+  	if (exception instanceof FetchException) return
+
+  	// oops, some important code was commented out
+  	// if (exception instanceof Error) return
+
+  	// will show a `TypeScript` error
+  	guardExceptionsHandled(result)
+
+  	// will show a `TypeScript` error and throw a runtime error
+  	assertExceptionsHandled(result)
+  }
+  ```
+
 - **`assertSuccessAndUnwrap`**
 
   Useful for testing your application.\

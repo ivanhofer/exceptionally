@@ -23,7 +23,7 @@ describe('assertSuccessAndUnwrap', () => {
 		expect(() => assertSuccessAndUnwrap(result)).toThrow()
 	})
 
-	describe('should throw when passing something to assertSuccessAndUnwrap', () => {
+	describe('should throw when passing something random to assertSuccessAndUnwrap', () => {
 		testDataMatrix((data: unknown, name?: string) =>
 			test(`${name || data}`, () => {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, no-void */
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, no-void */
 import type { Exception, ExceptionallyResult, ExtractException, ExtractSuccess, Success } from '../core/index.js'
 import { isAsync } from '../utils.js'
 
@@ -21,6 +21,12 @@ export const assertException: <Result extends Exception<unknown>>(
 export const guardException: <Result extends Exception<unknown>>(
 	result: Result,
 ) => void = _ => undefined
+
+export const assertExceptionsHandled: <Result extends Success<unknown> | never>(
+	result: Result,
+) => asserts result is never = result => !result.isSuccess && errorFn()
+
+export const guardExceptionsHandled: <Result extends Success<unknown> | never>(result: Result) => void = _ => undefined
 
 // --------------------------------------------------------------------------------------------------------------------
 
