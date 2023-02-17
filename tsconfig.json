@@ -27,7 +27,9 @@
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true,
 		"paths": {
-			"exceptionally": ["./src/index.ts"]
+			"exceptionally": ["./src/index.ts"],
+			"exceptionally/assert": ["./src/assert/index.ts"],
+			"exceptionally/utils": ["./src/utils/index.ts"]
 		}
 	},
 	"include": [
