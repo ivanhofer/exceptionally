@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.4.0
+
+### Minor Changes
+
+- e83c41d: add `guardSuccess` and `guardException` functions
+
 ## 2.3.1
 
 ### Patch Changes
