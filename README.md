@@ -102,7 +102,7 @@ console.info(result().toPrecision(2)) // => e.g. '0.57'
 
 ## Examples
 
-> You need to clone this repository locally and open it in your IDE (VS Code) to see typesafety in action. (StackBlitz)[https://stackblitz.com/] and [github.dev](https://github.dev/github/dev) won't show TypeScript errors. Also the [TypeScript Playground](https://www.typescriptlang.org/play) is not able to show it correctly unless you set some specific options.
+> You need to clone this repository locally and open it in your IDE (VS Code) to see typesafety in action. [StackBlitz](https://stackblitz.com/) and [github.dev](https://github.dev/github/dev) won't show TypeScript errors. Also the [TypeScript Playground](https://www.typescriptlang.org/play) is not able to show it correctly unless you set some specific options.
 
 - [input validation](https://github.com/ivanhofer/exceptionally/blob/main/examples/input-validation.ts)
 - [fetching data](https://github.com/ivanhofer/exceptionally/blob/main/examples/fetching-data.ts)
