@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.5.0
+
+### Minor Changes
+
+- caa984e: add `assertExceptionsHandled` and `guardExceptionsHandled` functions
+
 ## 2.4.0
 
 ### Minor Changes
