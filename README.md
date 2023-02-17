@@ -384,18 +384,22 @@ Useful assertion functions.
 
 #### exposed functions
 
-- **`assertSuccess`**
+- **`guardSuccess`** & **`assertSuccess`**
 
   To really make sure that you have handled all exceptions above.
 
   ```ts
-  import { assertSuccess, exception } from 'exceptionally'
+  import { exception } from 'exceptionally'
+  import { assertSuccess, guardSuccess } from 'exceptionally/assert'
 
   const doSomething = () => {
   	const result = Math.random() > 0.5 ? success(1) : exception(0)
 
   	// oops, some important code was commented out
   	// if (result.isException) throw new Error(result())
+
+  	// will show a `TypeScript` error
+  	guardSuccess(result)
 
   	// will show a `TypeScript` error and throw a runtime error
   	assertSuccess(result)
@@ -404,18 +408,22 @@ Useful assertion functions.
   }
   ```
 
-- **`assertException`**
+- **`guardException`** & **`assertException`**
 
   To really make sure that you are dealing with an exception.
 
   ```ts
-  import { assertException, exception } from 'exceptionally'
+  import { exception } from 'exceptionally'
+  import { assertException, guardException } from 'exceptionally/assert'
 
   const doSomething = () => {
   	const result = Math.random() > 0.5 ? success(1) : exception(0)
 
   	// oops, some important code was commented out
   	// if (result.isSuccess) return result()
+
+  	// will show a `TypeScript` error
+  	guardException(result)
 
   	// will show a `TypeScript` error and throw a runtime error
   	assertException(result)
