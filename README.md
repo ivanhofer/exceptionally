@@ -30,15 +30,15 @@
 
 Code can fail. Especially when you are accessing multiple services. The common way to handle errors is to throw them. But you won't really know what function could potentially throw an error in your application code.
 
-Well written applications can differentiate between [errors](#error) and [exceptions](#exception). They can recover from exceptions and include ways to recover from them.
+Well written applications can differentiate between [errors](#error) and [exceptions](#exception). They crash on errors and can recover from exceptions.
 
-Wrapping everything into `try-catch` blocks is not a good approach since it requires you to know the implementation of the function you are calling adds a indentation level, alters the program flow and is easy to forget if you are not paying attention.
+Wrapping everything into `try-catch` blocks is not a good approach since it requires you to know the implementation of the function you are calling, adds a indentation level, alters the program flow and is easy to forget if you are not paying attention.
 
-The exceptions you get in the `catch` block typed as `unknown`, so you don't really know what happened and you need to account for different kind of exceptions (e.g. retry sending a request makes only sense if you got a network exception and will probably not make sense if you pass invalid payload to a service).
+The exceptions you get in the `catch` block are typed as `unknown`, so you don't really know what happened and you need to account for different kind of exceptions (e.g. retry sending a request makes only sense if you got a network exception and will probably not make sense if you pass invalid payload to a service).
 
-While it requires just a little of effort to look into a function to see what kind of exception get thrown, you probably can handle it manually. But in bigger applications you will probably have a lot of nesting and conditional logic where it is not so easy to spot all different outcomes. It is easy to forget to handle an exception case or maybe you want to handle a case that was already handled inside that function, so you'll end up with code that will never be reached and
+While it requires just a little of effort to look into a function to see what kind of exceptions get thrown, you probably can handle it manually. But in bigger applications you will probably have a lot of nesting and conditional logic where it is not so easy to spot all different outcomes of a function acll. It is easy to forget to handle an exception case or maybe you want to handle a case that was already handled inside that function, so you'll end up with code that will never be reached.
 
-Adding a new kind of exception deep down in the nested functions would require you to take a look at all the code parts that use the function and check whether they should handle the exception or pass it to the next level.
+Adding a new kind of exception deep down in the nested functions would require you to take a look at all the code parts that call that function and check whether they should handle the exception or pass it to the next level.
 
 <!---------------------------------------------------------------------------------------------------------->
 
@@ -48,7 +48,7 @@ Adding a new kind of exception deep down in the nested functions would require y
 
 No, there is a little bit more to it.
 
-First of all, we need to make sure that in each part of the code we kow what the outcome of a specific function call will be, without looking at the implementation. To do that, we always need to return data as well as exceptions. If we return everything, TypeScript can infer all types and we know what we get when calling a function.
+First of all, we need to make sure that in each part of the code we know what the outcome of a specific function call will be, without looking at the implementation. To do that, we always need to return data as well as exceptions. If we return everything, TypeScript can infer all types and we know what we get back when calling a function.
 
 But now we also need a way to distinguish between a successful result and a result that contains an exception, so we need to wrap the value we return into an object. A by-product of this is that we need to unwrap the actual value at a later point, where we want to access it. This should be made as easiest as possible.
 
@@ -56,7 +56,7 @@ Because we don't throw exceptions, we don't use `try-catch` blocks. We need to u
 
 Little helper functions, that are fully typed will greatly improve the Developer Experience. Of course we want our code to be explicit enough, so the code can be read and understood fast. This means we need to come up with meaningful names for our wrapping functions.
 
-And because this is no rocket science, we don't need hundreds of dependencies to make this all happen. The could should be kept clean and efficient.
+And because this is no rocket science, we don't need hundreds of dependencies to make this all happen. The library should be kept clean and efficient.
 
 This packages delivers a solution to all the problems described above.
 
