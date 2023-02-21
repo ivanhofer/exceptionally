@@ -495,15 +495,25 @@ Useful assertion functions.
 
 ## Best Practices
 
-- **create wrapper functions for calls to other services**
-  \
+- **create wrapper functions for calls to other services**\
   Keep it **DRY**. Once you have written the code to connect to a service, you can reuse it for different API calls. And you don't need to handle the same edge-cases multiple times.
-- **internally don't throw anything, just throw errors at the application boundaries**
-  \
+- **internally don't throw anything, just throw errors at the application boundaries**\
   Inside the code you can control, **never throw** errors. But you need to tell your users and services that consume data from your application if something was not successful. At that point it is ok to throw an Error.
-- **document what kind of errors your application could throw and use a unique class (or error code) per error**
-  \
+- **document what kind of errors your application could throw and use a unique class (or error code) per error**\
   Having an **unique meaningful identifier** for each kind of error (e.g. validation, network-issues, etc.) will help you understand what has happened even after 3 or more levels of function calls. It makes it easy to handle only specific exceptions and deliver better error messages to your users.
+
+  > TypeScript can't distinguish between different Classes that derive from `Error`.
+  > As a workaround we can set a property inside that class to make inference work again.
+  > ```ts
+  > class NetworkException extends Error {
+  > ```
+  readonly #id = Symbol('NetworkException')
+  > }
+  > class DecodeJsonException extends Error {
+  > readonly #id = Symbol('DecodeJsonException')
+  > }
+  > ```
+  > ```
 
 <!---------------------------------------------------------------------------------------------------------->
 
