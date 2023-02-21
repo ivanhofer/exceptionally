@@ -19,19 +19,15 @@ type JsonPrimitive = boolean | null | number | string
 // NOTE: somehow TypeScript can't distinguish between different Classes that derive from `Error`.
 //       As a workaround we can set a property inside that class to make inference work again.
 class NetworkException extends Error {
-	// @ts-ignore the Playground does not persist the `noUnusedLocals` config
 	readonly #id = Symbol('NetworkException')
 }
 class DecodeJsonException extends Error {
-	// @ts-ignore the Playground does not persist the `noUnusedLocals` config
 	readonly #id = Symbol('DecodeJsonException')
 }
 class HttpException extends Error {
-	// @ts-ignore the Playground does not persist the `noUnusedLocals` config
 	readonly #id = Symbol('HttpException')
 }
 class EmptyDatasetException extends Error {
-	// @ts-ignore the Playground does not persist the `noUnusedLocals` config
 	readonly #id = Symbol('EmptyDatasetException')
 }
 
