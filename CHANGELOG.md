@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.6.0
+
+### Minor Changes
+
+- 6ddcaa6: log transformed error for `tryCatch` util
+
 ## 2.5.0
 
 ### Minor Changes
