@@ -67,9 +67,11 @@ const handleError = <ErrorFn extends (error: unknown) => unknown>(
 ) => {
 	const unwrappedError = unwrapExceptionIfNeeded(error)
 
-	logger && logger.error(unwrappedError)
+	const transformedError = errorFn ? errorFn(unwrappedError) : unwrappedError
 
-	return exception(errorFn ? errorFn(unwrappedError) : unwrappedError)
+	logger && logger.error(transformedError || unwrappedError)
+
+	return exception(transformedError)
 }
 
 const unwrapExceptionIfNeeded = <Data>(data: Data | ExceptionallyResult<boolean, Data>): Data =>

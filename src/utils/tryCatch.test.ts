@@ -1,5 +1,5 @@
 /* eslint-disable max-nested-callbacks */
-import { afterAll, beforeAll, beforeEach, describe, expect, type SpyInstance, test, vi } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, type MockContext, type SpyInstance, test, vi } from 'vitest'
 import { exception, success } from '../core/index.js'
 import { tryCatch } from './tryCatch.js'
 
@@ -104,6 +104,12 @@ describe('tryCatch', () => {
 					expect(result.isException).toBe(true)
 					expect(result()).toBeUndefined()
 				})
+
+				test('should log the error', async () => {
+					await tryCatch(async () => Promise.reject(new Error('rejected')), noop)
+					expect((consoleMock as unknown as MockContext<[Error], unknown>).calls?.[0]?.[0]?.message)
+						.toBe('rejected')
+				})
 			})
 
 			describe('with return value', () => {
@@ -139,6 +145,12 @@ describe('tryCatch', () => {
 
 					expect(result.isException).toBe(true)
 					expect((result() as Error).message).toBe('rejected (wrapped)')
+				})
+
+				test('should log the error', async () => {
+					await tryCatch(async () => Promise.reject(new Error('rejected')), errorFn)
+					expect((consoleMock as unknown as MockContext<[Error], unknown>).calls?.[0]?.[0]?.message)
+						.toBe('rejected (wrapped)')
 				})
 			})
 		})
