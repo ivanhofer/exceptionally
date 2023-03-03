@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.7.0
+
+### Minor Changes
+
+- a55c953: add support for importing subpath modules with moduleresolution set to node
+
 ## 2.6.0
 
 ### Minor Changes
