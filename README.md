@@ -159,7 +159,7 @@ All the core functionality to use in any project.
   To check if any given value is a `Success` or `Exception` object.
 
   ```ts
-  import { Exceptionally, success } from 'exceptionally'
+  import { isExceptionallyResult, success } from 'exceptionally'
 
   const result = Math.random() > 0.5 ? success(1) : 0
 
