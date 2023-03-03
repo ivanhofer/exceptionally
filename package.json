@@ -53,6 +53,16 @@
 	"module": "./lib/index.js",
 	"browser": "./lib/index.global.js",
 	"types": "./lib/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"assert": [
+				"lib/assert"
+			],
+			"utils": [
+				"lib/utils"
+			]
+		}
+	},
 	"exports": {
 		".": {
 			"types": "./lib/index.d.ts",
