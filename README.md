@@ -266,6 +266,8 @@ All the core functionality to use in any project.
 
 ### `exceptionally/utils`
 
+> Note: for older build-tools, you may need to import the functionality directly from `exceptionally`
+
 Utility functions that wrap common use cases.
 
 `import * from 'exceptionally/utils'`
@@ -377,6 +379,8 @@ Utility functions that wrap common use cases.
 <!---------------------------------------------------------------------------->
 
 ### `exceptionally/assert`
+
+> Note: for older build-tools, you may need to import the functionality directly from `exceptionally`
 
 Useful assertion functions.
 
