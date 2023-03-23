@@ -22,5 +22,6 @@
 		"**/lib": true
 	},
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"markdown.extension.toc.updateOnSave": false
+	"markdown.extension.toc.updateOnSave": false,
+	"editor.defaultFormatter": "dprint.dprint"
 }

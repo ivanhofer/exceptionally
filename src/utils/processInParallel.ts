@@ -8,26 +8,39 @@ import {
 	success,
 } from '../core/index.js'
 
-type ExtractSuccessDataFromTuple<Tuple extends ReadonlyArray<Promise<unknown>>> = Tuple extends [] ? []
-	: Tuple extends readonly [
-		infer First extends Promise<ExceptionallyResult<boolean, unknown>>,
-		...infer Rest extends ReadonlyArray<Promise<unknown>>,
-	] ? [ExtractSuccessData<Awaited<First>>, ...ExtractSuccessDataFromTuple<Rest>]
-	: unknown[]
+type ExtractSuccessDataFromTuple<Tuple extends ReadonlyArray<Promise<ExceptionallyResult<boolean, unknown>>>> =
+	Tuple extends [] ? []
+		: Tuple extends readonly [
+			infer First extends Promise<ExceptionallyResult<boolean, unknown>>,
+			...infer Rest extends ReadonlyArray<Promise<ExceptionallyResult<boolean, unknown>>>,
+		] ? [ExtractSuccessData<Awaited<First>>, ...ExtractSuccessDataFromTuple<Rest>]
+		: Tuple extends Array<Promise<ExceptionallyResult<boolean, unknown>>>
+			? Array<ExtractSuccessData<Awaited<Tuple[number]>>>
+		: never[]
 
-type ParseReturnType<T> = [T] extends [never] ? unknown : T | undefined
+type ExceptionReturnType<T> = [T] extends [never] ? never : T | undefined
 
-type ExtractExceptionDataFromTuple<Tuple extends ReadonlyArray<Promise<unknown>>> = Tuple extends [] ? []
-	: Tuple extends readonly [
-		infer First extends Promise<ExceptionallyResult<boolean, unknown>>,
-		...infer Rest extends ReadonlyArray<Promise<unknown>>,
-	] ? [ParseReturnType<ExtractExceptionData<Awaited<First>>>, ...ExtractExceptionDataFromTuple<Rest>]
-	: unknown[]
+type ExceptionArrayReturnType<T> = T extends Array<infer D> ? ExceptionReturnType<D>[] : T
 
-export const processInParallel = async <Data extends ReadonlyArray<Promise<ExceptionallyResult<boolean, unknown>>>>(
+type ExtractExceptionDataFromTuple<Tuple extends ReadonlyArray<Promise<ExceptionallyResult<boolean, unknown>>>> =
+	Tuple extends [] ? []
+		: Tuple extends readonly [
+			infer First extends Promise<ExceptionallyResult<boolean, unknown>>,
+			...infer Rest extends ReadonlyArray<Promise<ExceptionallyResult<boolean, unknown>>>,
+		] ? [ExceptionReturnType<ExtractExceptionData<Awaited<First>>>, ...ExtractExceptionDataFromTuple<Rest>]
+		: Tuple extends Array<Promise<ExceptionallyResult<boolean, unknown>>>
+			? ExceptionArrayReturnType<Array<ExtractExceptionData<Awaited<Tuple[number]>>>>
+		: never[]
+
+export const processInParallel = async <
+	// dprint-ignore
+	const Data extends
+	| ReadonlyArray<Promise<ExceptionallyResult<boolean, unknown>>>
+	| Array<Promise<ExceptionallyResult<boolean, unknown>>>,
+>(
 	resultsToProcess: Data,
 ) => {
-	const dataResults = await Promise.allSettled(resultsToProcess)
+	const dataResults = await Promise.allSettled(resultsToProcess as unknown[])
 	const results: ExceptionallyResult<boolean, unknown>[] = dataResults.map(r =>
 		r.status === 'fulfilled' ? success(r.value) : exception(r.reason)
 	)
