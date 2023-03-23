@@ -10,13 +10,13 @@ const decision: boolean = true
 		[
 			Promise.resolve(success('data')),
 			Promise.resolve((decision) ? exception('oops') : success(1)),
-		] as const,
+		],
 	)
 	if (r.isSuccess) {
 		const sType: [string, number] = r()
 	} else {
-		// @ts-expect-error should be [unknown, unknown, string | undefined]
-		const eType: [unknown, undefined] = r()
+		// @ts-expect-error should be [never, string | undefined]
+		const eType: [never, undefined] = r()
 	}
 }
 
@@ -26,11 +26,17 @@ const decision: boolean = true
 		Promise.resolve((decision) ? exception('oops') : success(5)),
 	])
 	if (r.isSuccess) {
-		const sType: unknown[] = r()
-		const sType0: unknown = sType[0]
+		const sType: [string, number] = r()
+		const sType0: string = sType[0]
+		const sType1: number = sType[1]
+		// @ts-expect-error should not allow to access index 2 of tuple
+		sType[2]
 	} else {
-		// @ts-expect-error should be unknown[]
-		const eType: number[] = r()
+		const eType: [number | undefined, string | undefined] = r()
+		const eType0: number | undefined = eType[0]
+		const eType1: string | undefined = eType[1]
+		// @ts-expect-error should not allow to access index 2 of tuple
+		eType[2]
 	}
 }
 
@@ -39,7 +45,7 @@ const decision: boolean = true
 		[
 			Promise.resolve(success('One')),
 			Promise.resolve(exception('oops')),
-		] as const,
+		],
 	)
 	if (r.isSuccess) {
 		const sType: [string, never] = r()
@@ -47,25 +53,48 @@ const decision: boolean = true
 		// @ts-expect-error should not allow to access index 2 of tuple
 		sType[2]
 	} else {
-		// @ts-expect-error should be [unknown, string | undefined]
-		const eType: [string, string | undefined] = r()
+		const eType: [never, string | undefined] = r()
+	}
+}
+
+{
+	const items = new Array(5).fill(null).map((_, i) => Promise.resolve(i % 2 ? success(1) : exception('')))
+	const r = await processInParallel(items)
+
+	if (r.isSuccess) {
+		const sType: number[] = r()
+		// @ts-expect-error should be number | undefined
+		const sType0: number = sType[0]
+	} else {
+		const eType: (string | undefined)[] = r()
+	}
+}
+
+{
+	const items = new Array(5).fill(null).map((_, i) => Promise.resolve(success(i % 2 ? 'message' : true)))
+	const r = await processInParallel(items)
+
+	if (r.isSuccess) {
+		const sType: (string | boolean)[] = r()
+	} else {
+		const eType: never[] = r()
 	}
 }
 
 {
 	const r = await processInParallel(
-		// @ts-expect-error must be promises (or else calling the function does not make sense)
 		[
+			// @ts-expect-error must be promises (or else calling the function does not make sense)
 			success('One'),
-		] as const,
+		],
 	)
 }
 
 {
 	const r = await processInParallel(
-		// @ts-expect-error functions must return an ExceptionallyResult
 		[
+			// @ts-expect-error functions must return an ExceptionallyResult
 			Promise.resolve(1),
-		] as const,
+		],
 	)
 }

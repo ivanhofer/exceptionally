@@ -31,25 +31,25 @@
 		"lint-staged": "lint-staged"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.25.0",
-		"@size-limit/preset-small-lib": "^8.1.0",
-		"@typescript-eslint/eslint-plugin": "^5.40.0",
-		"@typescript-eslint/parser": "^5.40.0",
-		"dprint": "^0.32.1",
-		"eslint": "^8.25.0",
-		"eslint-config-xo": "^0.42.0",
-		"eslint-config-xo-typescript": "^0.53.0",
-		"husky": "^8.0.1",
-		"lint-staged": "^13.0.3",
-		"size-limit": "^8.1.0",
-		"tsup": "^6.2.3",
-		"typescript": "^4.8.4",
-		"undici": "^5.11.0",
-		"vite": "^3.1.8",
-		"vitest": "^0.24.1"
+		"@changesets/cli": "^2.26.1",
+		"@size-limit/preset-small-lib": "^8.2.4",
+		"@typescript-eslint/eslint-plugin": "^5.56.0",
+		"@typescript-eslint/parser": "^5.56.0",
+		"dprint": "^0.35.3",
+		"eslint": "^8.36.0",
+		"eslint-config-xo": "^0.43.1",
+		"eslint-config-xo-typescript": "^0.56.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.2.0",
+		"size-limit": "^8.2.4",
+		"tsup": "^6.7.0",
+		"typescript": "^5.0.2",
+		"undici": "^5.21.0",
+		"vite": "^4.2.1",
+		"vitest": "^0.29.7"
 	},
 	"peerDependencies": {
-		"typescript": "^4.0"
+		"typescript": "^5.0"
 	},
 	"type": "module",
 	"main": "./lib/legacy.cjs",
