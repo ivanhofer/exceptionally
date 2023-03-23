@@ -64,8 +64,16 @@ This packages delivers a solution to all the problems described above.
 
 ## Installation
 
+### TypeScript version 5.0 or higher
+
 ```bash
 npm install exceptionally
+```
+
+### TypeScript version 4.x
+
+```bash
+npm install exceptionally@2
 ```
 
 > You should also set everything to [`strict` mode](https://www.typescriptlang.org/tsconfig#strict) in your `tsconfig.json` to get the most out of this package.
