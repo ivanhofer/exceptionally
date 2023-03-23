@@ -64,8 +64,16 @@ This packages delivers a solution to all the problems described above.
 
 ## Installation
 
+### TypeScript version 5.0 or higher
+
 ```bash
 npm install exceptionally
+```
+
+### TypeScript version 4.x
+
+```bash
+npm install exceptionally@2
 ```
 
 > You should also set everything to [`strict` mode](https://www.typescriptlang.org/tsconfig#strict) in your `tsconfig.json` to get the most out of this package.
@@ -533,18 +541,18 @@ There exist similar approaches how to best handle errors and exceptions in appli
 
 |                                                                                     | `exceptionally` | `[data,error] tuple` | `{data,error} object` | `neverthrow` | `@badrap/result` |
 | ----------------------------------------------------------------------------------- | --------------- | -------------------- | --------------------- | ------------ | ---------------- |
-| prevents try-catch blocks (example 1)                                               | ✅               | ✅                    | ✅                     | ✅            | ✅                |
-| typesafe error handling (example 1)                                                 | ✅               | ✅                    | ✅                     | ✅            | ✅                |
-| obvious how to handle falsy return values (example 2)                               | ✅               | ❌                    | ❌                     | ✅            | ✅                |
-| can access error object without needing to store it as a variable first (example 3) | ✅               | ❌                    | ❌                     | ✅            | ✅                |
-| does not require you to come up with new two variable names per result (example 4)  | ✅               | ❌                    | ❌                     | ✅            | ✅                |
-| obvious how to handle no data and no error return values (example 5)                | ✅               | ❌                    | ❌                     | ✅            | ✅                |
-| Error can be any data                                                               | ✅               | ✅                    | ✅                     | ✅            | ❌                |
-| can detect uncaught errors without an additional package                            | ✅               | ❌                    | ❌                     | ❌            | ✅                |
-| will never throw (unless you really want it)                                        | ✅               | ✅                    | ✅                     | ❌            | ❌                |
-| offer useful functions to work with the library more easily                         | ✅               | ❌                    | ❌                     | ✅            | ✅                |
-| adds less than `0.5kb` to your bundle                                               | ✅               | ➖                    | ➖                     | ❌            | ❌                |
-| has chosen an "exceptionally" name 😋                                                | ✅               | ❌                    | ❌                     | ❌            | ❌                |
+| prevents try-catch blocks (example 1)                                               | ✅              | ✅                   | ✅                    | ✅           | ✅               |
+| typesafe error handling (example 1)                                                 | ✅              | ✅                   | ✅                    | ✅           | ✅               |
+| obvious how to handle falsy return values (example 2)                               | ✅              | ❌                   | ❌                    | ✅           | ✅               |
+| can access error object without needing to store it as a variable first (example 3) | ✅              | ❌                   | ❌                    | ✅           | ✅               |
+| does not require you to come up with new two variable names per result (example 4)  | ✅              | ❌                   | ❌                    | ✅           | ✅               |
+| obvious how to handle no data and no error return values (example 5)                | ✅              | ❌                   | ❌                    | ✅           | ✅               |
+| Error can be any data                                                               | ✅              | ✅                   | ✅                    | ✅           | ❌               |
+| can detect uncaught errors without an additional package                            | ✅              | ❌                   | ❌                    | ❌           | ✅               |
+| will never throw (unless you really want it)                                        | ✅              | ✅                   | ✅                    | ❌           | ❌               |
+| offer useful functions to work with the library more easily                         | ✅              | ❌                   | ❌                    | ✅           | ✅               |
+| adds less than `0.5kb` to your bundle                                               | ✅              | ➖                   | ➖                    | ❌           | ❌               |
+| has chosen an "exceptionally" name 😋                                               | ✅              | ❌                   | ❌                    | ❌           | ❌               |
 
 > Do you have other examples? Please open a PR and add them to the table.
 
