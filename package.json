@@ -52,20 +52,10 @@
 		"typescript": "^4.0"
 	},
 	"type": "module",
-	"main": "./lib/index.cjs",
-	"module": "./lib/index.js",
-	"browser": "./lib/index.global.js",
-	"types": "./lib/index.d.ts",
-	"typesVersions": {
-		"*": {
-			"assert": [
-				"lib/assert"
-			],
-			"utils": [
-				"lib/utils"
-			]
-		}
-	},
+	"main": "./lib/legacy.cjs",
+	"module": "./lib/legacy.js",
+	"browser": "./lib/legacy.global.js",
+	"types": "./lib/legacy.d.ts",
 	"exports": {
 		".": {
 			"types": "./lib/index.d.ts",
