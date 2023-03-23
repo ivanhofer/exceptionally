@@ -10,7 +10,7 @@ const decision: boolean = true
 		[
 			Promise.resolve(success('data')),
 			Promise.resolve((decision) ? exception('oops') : success(1)),
-		] as const,
+		],
 	)
 	if (r.isSuccess) {
 		const sType: [string, number] = r()
@@ -39,7 +39,7 @@ const decision: boolean = true
 		[
 			Promise.resolve(success('One')),
 			Promise.resolve(exception('oops')),
-		] as const,
+		],
 	)
 	if (r.isSuccess) {
 		const sType: [string, never] = r()
