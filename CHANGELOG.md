@@ -1,5 +1,12 @@
 # exceptionally
 
+## 3.0.0
+
+### Major Changes
+
+- e97b58d: upgrade to TypeScript 5
+- e97b58d: improve type definition for `processInParallel`
+
 ## 2.8.1
 
 ### Patch Changes
