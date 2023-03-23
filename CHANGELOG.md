@@ -1,5 +1,11 @@
 # exceptionally
 
+## 2.8.0
+
+### Minor Changes
+
+- 3901b1b: add legacy build for older toolings
+
 ## 2.7.0
 
 ### Minor Changes
