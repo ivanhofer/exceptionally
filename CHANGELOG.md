@@ -7,6 +7,12 @@
 - e97b58d: upgrade to TypeScript 5
 - e97b58d: improve type definition for `processInParallel`
 
+## 2.8.1
+
+### Patch Changes
+
+- 1c5de55: use `es2015` as target fo legacy build
+
 ## 2.8.0
 
 ### Minor Changes
