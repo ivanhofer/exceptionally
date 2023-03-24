@@ -1,12 +1,17 @@
-import { defineConfig } from 'tsup'
+import { defineConfig, type Options } from 'tsup'
+
+export const getTsupConfig = (watch: Options['watch']) =>
+	({
+		outDir: 'lib',
+		format: ['esm', 'cjs', 'iife'],
+		dts: true,
+		treeshake: true,
+		sourcemap: !!watch,
+		minify: !watch,
+	}) as Options
 
 export default defineConfig(({ watch }) => ({
-	entry: ['src/index.ts', 'src/assert/index.ts', 'src/utils/index.ts', 'src/legacy.ts'],
-	outDir: 'lib',
-	format: ['esm', 'cjs', 'iife'],
-	dts: true,
-	treeshake: true,
-	sourcemap: !!watch,
+	...getTsupConfig(watch),
 	clean: true,
-	minify: !watch,
+	entry: ['src/index.ts', 'src/assert/index.ts', 'src/utils/index.ts'],
 }))
