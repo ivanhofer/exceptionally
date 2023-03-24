@@ -1,5 +1,11 @@
 # exceptionally
 
+## 3.0.1
+
+### Patch Changes
+
+- e42d5e7: use `es2015` as target fo legacy build
+
 ## 3.0.0
 
 ### Major Changes
