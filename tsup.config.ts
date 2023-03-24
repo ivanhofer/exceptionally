@@ -8,7 +8,7 @@ export const getTsupConfig = (watch: Options['watch']) =>
 		treeshake: true,
 		sourcemap: !!watch,
 		minify: !watch,
-	}) as Options
+	}) satisfies Options
 
 export default defineConfig(({ watch }) => ({
 	...getTsupConfig(watch),
